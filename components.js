@@ -13,10 +13,10 @@ function getHeader(currentPage = '') {
             </button>
             <ul class="nav-links">
                 <li><a href="index.html#about" ${currentPage === 'about' ? 'class="active"' : ''}>About</a></li>
-                <li><a href="speakers.html" ${currentPage === 'speakers' ? 'class="active"' : ''}>Speakers</a></li>
                 <li><a href="schedule.html" ${currentPage === 'schedule' ? 'class="active"' : ''}>Schedule</a></li>
-                <li><a href="faqs.html" ${currentPage === 'faqs' ? 'class="active"' : ''}>FAQs</a></li>
+                <li><a href="speakers.html" ${currentPage === 'speakers' ? 'class="active"' : ''}>Speakers</a></li>
                 <li><a href="scholarships.html" ${currentPage === 'scholarships' ? 'class="active"' : ''}>Scholarships</a></li>
+                <li><a href="faqs.html" ${currentPage === 'faqs' ? 'class="active"' : ''}>FAQs</a></li>
                 <li><a href="sponsors.html" ${currentPage === 'sponsors' ? 'class="active"' : ''}>Sponsors</a></li>
                 <li><a href="register.html" class="nav-cta">Register</a></li>
             </ul>
