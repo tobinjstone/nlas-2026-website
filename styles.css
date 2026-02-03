@@ -71,14 +71,10 @@ section {
     z-index: 1000;
     background: #FDFBE9;
     transition: var(--transition-smooth);
-    filter: url(#filter_tornpaper)
-            drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
 }
 
 .main-nav.scrolled {
     background: #FDFBE9;
-    filter: url(#filter_tornpaper)
-            drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
 }
 
 .nav-container {
@@ -334,15 +330,9 @@ section {
 /* ============================================
    Paper Sheet Base Styles
    ============================================ */
-.paper-torn {
-    filter: url(#filter_tornpaper)
-            drop-shadow(0 4px 6px var(--paper-shadow))
-            drop-shadow(0 10px 40px rgba(0, 0, 0, 0.2));
-}
-
 .paper-torn,
 .speaker-clipping {
-    will-change: filter, transform;
+    will-change: transform;
     transform: translateZ(0); /* Forces GPU layer creation */
 }
 
@@ -470,10 +460,12 @@ section {
     transform: rotate(var(--rotation, 0deg));
 }
 
-.speaker-clipping.paper-torn {
-    filter: url(#filter_tornpaper)
-            drop-shadow(0 4px 8px var(--paper-shadow))
-            drop-shadow(0 8px 30px rgba(0, 0, 0, 0.15));
+.speaker-clipping {
+    transition: transform 0.3s ease;
+}
+
+.speaker-clipping:hover {
+    transform: rotate(var(--rotation, 0deg)) scale(1.05) translateY(-5px);
 }
 
 .clipping-photo {
@@ -1381,13 +1373,18 @@ section {
         width: 100%;
         left: 0;
         transform: none;
-        
+        will-change: auto;
+
         margin-top: 10px;
-       ;
+
         background: transparent;
         filter: none;
         overflow: visible;
         box-shadow: none;
+    }
+
+    .main-nav > .torn-paper-canvas {
+        display: none;
     }
 
     .main-nav::before {
@@ -1406,7 +1403,6 @@ section {
         position: absolute;
         inset: -10px;
         background: #FDFBE9;
-        filter: url(#filter_paper_texture);
         z-index: 0;
     }
 

@@ -3,7 +3,7 @@
 function getHeader(currentPage = '') {
     return `
     <!-- Navigation -->
-    <nav class="main-nav">
+    <nav class="main-nav paper-torn">
         <div class="nav-container">
             <a href="index.html" class="nav-logo"><img src="assets/logo-blue.webp" alt="NLAS 2026" class="nav-logo-img nav-logo-desktop"><img src="assets/logo.webp" alt="NLAS 2026" class="nav-logo-img nav-logo-mobile"></a>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
@@ -85,4 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (footerPlaceholder) {
         footerPlaceholder.outerHTML = getFooter();
     }
+
+    // Notify other scripts that components are ready
+    document.dispatchEvent(new Event('componentsLoaded'));
 });

@@ -6,9 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply site configuration (hide/show sections, pages, features)
     applyConfig();
 
-    // Initialize TornPaper.js for torn edge texture
-    initTornPaper();
-
     // Initialize navigation
     initNavigation();
 
@@ -71,30 +68,6 @@ function applyConfig() {
             link.style.pointerEvents = 'none';
             link.style.opacity = '0.5';
             link.textContent = 'Registration Closed';
-        });
-    }
-}
-
-// ============================================
-// TornPaper.js Initialization
-// ============================================
-function initTornPaper() {
-    if (typeof Tornpaper !== 'undefined') {
-        new Tornpaper({
-            filterName: "filter_tornpaper",
-            seed: 42,
-            tornFrequency: 0.04,
-            tornScale: 10,
-            grungeFrequency: 0.01,
-            grungeScale: 2
-        });
-        new Tornpaper({
-            filterName: "filter_paper_texture",
-            seed: 42,
-            tornFrequency: 0.03,
-            tornScale: 0,
-            grungeFrequency: 0.01,
-            grungeScale: 1
         });
     }
 }
@@ -291,11 +264,3 @@ function initScheduleTabs() {
     });
 }
 
-// ============================================
-// Re-init after components load
-// ============================================
-if (document.getElementById('header-placeholder') || document.getElementById('footer-placeholder')) {
-    document.addEventListener('componentsLoaded', () => {
-        initNavigation();
-    });
-}

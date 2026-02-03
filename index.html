@@ -10,8 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/berlin-sans-fb-demi" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <!-- TornPaper.js for paper texture effects -->
-    <script src="https://cdn.jsdelivr.net/gh/happy358/TornPaper@v0.0.3/tornpaper.min.js"></script>
 </head>
 <body>
     <div id="header-placeholder" data-current-page="home"></div>
@@ -47,10 +45,8 @@
 
     <!-- About Section -->
     <section id="about" class="about-section">
-        <div class="notebook-paper paper-torn" style="--rotation: -0.8deg;">
-            <div class="notebook-holes">
-                <span></span><span></span><span></span>
-            </div>
+        <div class="paper-sheet paper-torn" style="--rotation: -0.8deg;">
+           
             <div class="notebook-content">
                 <h2 class="section-title notebook-title">What is NLAS?</h2>
                 <div class="about-text">
@@ -115,8 +111,8 @@
 
     <!-- Schedule Overview Section -->
     <section id="schedule-overview" class="schedule-overview-section">
-        <div class="notebook-paper paper-torn" style="--rotation: 0.5deg;">
-            <div class="notebook-holes">
+        <div class="paper-sheet paper-torn" style="--rotation: 0.5deg;">
+            <div class="">
                 <span></span><span></span><span></span>
             </div>
             <div class="notebook-content">
@@ -185,6 +181,7 @@
 
     <div id="footer-placeholder"></div>
 
+    <script src="torn-paper.js"></script>
     <script src="config.js"></script>
     <script src="components.js"></script>
     <script src="script.js"></script>
