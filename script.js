@@ -3,6 +3,9 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Apply site configuration (hide/show sections, pages, features)
+    applyConfig();
+
     // Initialize TornPaper.js for torn edge texture
     initTornPaper();
 
@@ -14,7 +17,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize countdown timer
     initCountdown();
+
+    // Initialize FAQ accordion
+    initFAQAccordion();
+
+    // Initialize schedule tabs
+    initScheduleTabs();
 });
+
+// ============================================
+// Site Configuration
+// ============================================
+function applyConfig() {
+    if (typeof window.SITE_CONFIG === 'undefined') return;
+
+    // Hide disabled sections
+    for (const [section, enabled] of Object.entries(SITE_CONFIG.sections)) {
+        if (!enabled) {
+            const el = document.getElementById(section) || document.querySelector(`.${section}-section`);
+            if (el) el.style.display = 'none';
+        }
+    }
+
+    // Remove nav links for disabled pages
+    const pageToHref = {
+        speakers: 'speakers.html',
+        schedule: 'schedule.html',
+        faqs: 'faqs.html',
+        scholarships: 'scholarships.html',
+        sponsors: 'sponsors.html',
+        register: 'register.html',
+        codeOfConduct: 'code-of-conduct.html'
+    };
+
+    for (const [page, enabled] of Object.entries(SITE_CONFIG.pages)) {
+        if (!enabled) {
+            const href = pageToHref[page];
+            if (!href) continue;
+            document.querySelectorAll(`a[href="${href}"]`).forEach(link => {
+                const li = link.closest('li');
+                if (li) {
+                    li.remove();
+                } else {
+                    link.remove();
+                }
+            });
+        }
+    }
+
+    // Handle registration feature toggle
+    if (!SITE_CONFIG.features.registrationOpen) {
+        document.querySelectorAll('a[href="register.html"]').forEach(link => {
+            link.style.pointerEvents = 'none';
+            link.style.opacity = '0.5';
+            link.textContent = 'Registration Closed';
+        });
+    }
+}
 
 // ============================================
 // TornPaper.js Initialization
@@ -26,6 +85,14 @@ function initTornPaper() {
             seed: 42,
             tornFrequency: 0.05,
             tornScale: 10,
+            grungeFrequency: 0.02,
+            grungeScale: 3
+        });
+        new Tornpaper({
+            filterName: "filter_paper_texture",
+            seed: 42,
+            tornFrequency: 0.05,
+            tornScale: 0,
             grungeFrequency: 0.02,
             grungeScale: 3
         });
@@ -135,19 +202,79 @@ function initSmoothScroll() {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            
+
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 const navHeight = document.querySelector('.main-nav').offsetHeight;
                 const targetPosition = targetElement.offsetTop - navHeight;
-                
+
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
             }
         });
+    });
+}
+
+// ============================================
+// FAQ Accordion
+// ============================================
+function initFAQAccordion() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        if (question) {
+            question.addEventListener('click', () => {
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        }
+    });
+}
+
+// ============================================
+// Schedule Tabs
+// ============================================
+function initScheduleTabs() {
+    const tabs = document.querySelectorAll('.schedule-tab');
+    const contents = document.querySelectorAll('.schedule-day-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const day = tab.dataset.day;
+
+            // Update active tab
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Show corresponding content
+            contents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === `day-${day}`) {
+                    content.classList.add('active');
+                }
+            });
+        });
+    });
+}
+
+// ============================================
+// Re-init after components load
+// ============================================
+if (document.getElementById('header-placeholder') || document.getElementById('footer-placeholder')) {
+    document.addEventListener('componentsLoaded', () => {
+        initNavigation();
     });
 }
