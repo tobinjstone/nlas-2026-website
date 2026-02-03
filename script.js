@@ -83,18 +83,18 @@ function initTornPaper() {
         new Tornpaper({
             filterName: "filter_tornpaper",
             seed: 42,
-            tornFrequency: 0.05,
+            tornFrequency: 0.04,
             tornScale: 10,
-            grungeFrequency: 0.02,
-            grungeScale: 3
+            grungeFrequency: 0.01,
+            grungeScale: 2
         });
         new Tornpaper({
             filterName: "filter_paper_texture",
             seed: 42,
-            tornFrequency: 0.05,
+            tornFrequency: 0.03,
             tornScale: 0,
-            grungeFrequency: 0.02,
-            grungeScale: 3
+            grungeFrequency: 0.01,
+            grungeScale: 1
         });
     }
 }
@@ -108,14 +108,21 @@ function initNavigation() {
     const navLinks = document.querySelector('.nav-links');
     const links = document.querySelectorAll('.nav-links a');
 
-    // Scroll effect for nav
+    // Scroll effect for nav (throttled with rAF)
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 50) {
-            nav.classList.add('scrolled');
-        } else {
-            nav.classList.remove('scrolled');
+        if (!scrollTicking) {
+            requestAnimationFrame(() => {
+                if (window.pageYOffset > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+                scrollTicking = false;
+            });
+            scrollTicking = true;
         }
-    });
+    }, { passive: true });
 
     // Mobile menu toggle
     if (toggle) {
@@ -166,32 +173,46 @@ function initNavigation() {
 // ============================================
 function initCountdown() {
     const eventDate = new Date('2026-07-15T09:00:00-04:00'); // July 15, 2026 9 AM ET
+    const elDays = document.getElementById('countdown-days');
+    const elHours = document.getElementById('countdown-hours');
+    const elMinutes = document.getElementById('countdown-minutes');
+    const elSeconds = document.getElementById('countdown-seconds');
+
+    if (!elDays) return; // Not on a page with countdown
+
+    let timerId = null;
 
     function update() {
-        const now = new Date();
-        const diff = eventDate - now;
+        const diff = eventDate - new Date();
 
         if (diff <= 0) {
-            document.getElementById('countdown-days').textContent = '0';
-            document.getElementById('countdown-hours').textContent = '0';
-            document.getElementById('countdown-minutes').textContent = '0';
-            document.getElementById('countdown-seconds').textContent = '0';
+            elDays.textContent = '0';
+            elHours.textContent = '0';
+            elMinutes.textContent = '0';
+            elSeconds.textContent = '0';
+            if (timerId) clearInterval(timerId);
             return;
         }
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        document.getElementById('countdown-days').textContent = days;
-        document.getElementById('countdown-hours').textContent = String(hours).padStart(2, '0');
-        document.getElementById('countdown-minutes').textContent = String(minutes).padStart(2, '0');
-        document.getElementById('countdown-seconds').textContent = String(seconds).padStart(2, '0');
+        elDays.textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+        elHours.textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+        elMinutes.textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+        elSeconds.textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
     }
 
     update();
-    setInterval(update, 1000);
+    timerId = setInterval(update, 1000);
+
+    // Pause when tab is hidden, resume when visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            clearInterval(timerId);
+            timerId = null;
+        } else {
+            update();
+            timerId = setInterval(update, 1000);
+        }
+    });
 }
 
 // ============================================

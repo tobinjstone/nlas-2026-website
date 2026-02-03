@@ -5,7 +5,7 @@ function getHeader(currentPage = '') {
     <!-- Navigation -->
     <nav class="main-nav">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo"><img src="assets/logo-blue.png" alt="NLAS 2026" class="nav-logo-img nav-logo-desktop"><img src="assets/logo.png" alt="NLAS 2026" class="nav-logo-img nav-logo-mobile"></a>
+            <a href="index.html" class="nav-logo"><img src="assets/logo-blue.webp" alt="NLAS 2026" class="nav-logo-img nav-logo-desktop"><img src="assets/logo.webp" alt="NLAS 2026" class="nav-logo-img nav-logo-mobile"></a>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -35,10 +35,10 @@ function getFooter() {
         <div class="container">
             <div class="footer-content">
                 <div class="footer-cnl">
-                    <img src="assets/cnl-logo-white.png" alt="Center for New Liberalism" class="footer-cnl-logo">
+                    <img src="assets/cnl-logo-white.webp" alt="Center for New Liberalism" class="footer-cnl-logo" loading="lazy" decoding="async">
                 </div>
                 <div class="footer-brand">
-                    <img src="assets/logo.png" alt="NLAS 2026" class="footer-nlas-logo">
+                    <img src="assets/logo.webp" alt="NLAS 2026" class="footer-nlas-logo" loading="lazy" decoding="async">
                     <p>A summit by the Center for New Liberalism</p>
                 </div>
                 <div class="footer-links">
