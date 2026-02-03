@@ -47,11 +47,15 @@ body {
 .page-background {
     position: fixed;
     inset: 0;
-    background-image: url('assets/background.webp');
+    background-image: url('assets/background.png');
     background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     z-index: -1;
+    pointer-events: none;
+    /* Add this to prevent unnecessary blending calculations */
+    will-change: transform;
+}
+section {
+    contain: paint; /* Tells the browser that nothing inside this section paints outside it */
 }
 
 /* ============================================
@@ -334,6 +338,12 @@ body {
     filter: url(#filter_tornpaper)
             drop-shadow(0 4px 6px var(--paper-shadow))
             drop-shadow(0 10px 40px rgba(0, 0, 0, 0.2));
+}
+
+.paper-torn,
+.speaker-clipping {
+    will-change: filter, transform;
+    transform: translateZ(0); /* Forces GPU layer creation */
 }
 
 .paper-sheet {
