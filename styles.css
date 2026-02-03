@@ -1375,12 +1375,7 @@ section {
         --nav-height: 60px;
     }
 
-    .page-background {
-        background-image: url('assets/background.webp');
-        background-size: cover;
-        background-position: top center;
-        background-attachment: scroll;
-    }
+
 
 .main-nav {
         width: 100%;
