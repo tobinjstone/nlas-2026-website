@@ -13,16 +13,16 @@ var SITE_CONFIG = {
     sections: {
         countdown: true,
         about: true,
-        'featured-speakers': true,
+        'featured-speakers': false,
         'schedule-overview': true,
-        partners: true,
+        partners: false,
         cta: true
     },
     pages: {
         speakers: false,
-        schedule: true,
+        schedule: false,
         faqs: true,
-        scholarships: true,
+        scholarships: false,
         sponsors: false,
         register: true,
     },
