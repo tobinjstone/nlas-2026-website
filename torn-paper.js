@@ -203,6 +203,31 @@ function initTornPaper() {
 
     // Make available globally if needed
     window.tornPaperEffect = tornPaper;
+
+    // Watch for async content (e.g. EveryAction forms) that changes element size
+    document.querySelectorAll('.paper-torn .ngp-form, .paper-torn .cnl-ea-form-wrap').forEach(formEl => {
+        const paperEl = formEl.closest('.paper-torn');
+        if (!paperEl) return;
+
+        let lastWidth = paperEl.offsetWidth;
+        let lastHeight = paperEl.offsetHeight;
+        let refreshTimeout;
+
+        const observer = new MutationObserver(() => {
+            clearTimeout(refreshTimeout);
+            refreshTimeout = setTimeout(() => {
+                const newWidth = paperEl.offsetWidth;
+                const newHeight = paperEl.offsetHeight;
+                if (newWidth !== lastWidth || newHeight !== lastHeight) {
+                    lastWidth = newWidth;
+                    lastHeight = newHeight;
+                    tornPaper.applyTo(paperEl);
+                }
+            }, 100);
+        });
+
+        observer.observe(formEl, { childList: true, subtree: true });
+    });
 }
 
 // Export for module use or run on DOMContentLoaded
