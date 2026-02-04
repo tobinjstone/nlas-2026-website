@@ -10,6 +10,11 @@
 // ============================================
 
 var SITE_CONFIG = {
+    // Google Sheets data sources (publish sheet as CSV: File > Share > Publish to web > CSV)
+    // Sheet should have columns: Question, Answer
+    dataSources: {
+        faqsSheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTTTGEgscjLxJ4sv4Jv5-EIHJn73lT7bM90IAGgbg-bcG0vhfQbFRQuriykkCG8Y1re0o5mLhOhr6b8/pub?output=csv' // Paste your published Google Sheet CSV URL here
+    },
     sections: {
         countdown: true,
         about: true,
