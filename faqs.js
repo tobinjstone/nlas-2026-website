@@ -1,55 +1,6 @@
 (function() {
     'use strict';
 
-    function parseCSV(csvText) {
-        var lines = [];
-        var currentLine = [];
-        var currentField = '';
-        var inQuotes = false;
-
-        for (var i = 0; i < csvText.length; i++) {
-            var char = csvText[i];
-            var nextChar = csvText[i + 1];
-
-            if (inQuotes) {
-                if (char === '"' && nextChar === '"') {
-                    currentField += '"';
-                    i++;
-                } else if (char === '"') {
-                    inQuotes = false;
-                } else {
-                    currentField += char;
-                }
-            } else {
-                if (char === '"') {
-                    inQuotes = true;
-                } else if (char === ',') {
-                    currentLine.push(currentField.trim());
-                    currentField = '';
-                } else if (char === '\n' || (char === '\r' && nextChar === '\n')) {
-                    currentLine.push(currentField.trim());
-                    if (currentLine.length > 0 && currentLine.some(function(f) { return f !== ''; })) {
-                        lines.push(currentLine);
-                    }
-                    currentLine = [];
-                    currentField = '';
-                    if (char === '\r') i++;
-                } else if (char !== '\r') {
-                    currentField += char;
-                }
-            }
-        }
-
-        if (currentField || currentLine.length > 0) {
-            currentLine.push(currentField.trim());
-            if (currentLine.some(function(f) { return f !== ''; })) {
-                lines.push(currentLine);
-            }
-        }
-
-        return lines;
-    }
-
     function renderFAQs(faqs) {
         var container = document.getElementById('faq-container');
         if (!container) return;
@@ -91,7 +42,8 @@
 
                 document.querySelectorAll('.faq-item').forEach(function(faq) {
                     faq.classList.remove('active');
-                    faq.querySelector('.faq-toggle').textContent = '+';
+                    var toggle = faq.querySelector('.faq-toggle');
+                    if (toggle) toggle.textContent = '+';
                 });
 
                 if (!isOpen) {
@@ -109,6 +61,20 @@
         }
     }
 
+    function extractSpreadsheetId(url) {
+        // Handle various Google Sheets URL formats
+        // Format 1: https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/...
+        // Format 2: https://docs.google.com/spreadsheets/d/e/PUBLISHED_ID/pub...
+        var match = url.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+        if (match) return match[1];
+
+        // Try to extract from /d/e/ format (published)
+        match = url.match(/\/spreadsheets\/d\/e\/([a-zA-Z0-9-_]+)/);
+        if (match) return match[1];
+
+        return null;
+    }
+
     function loadFAQs() {
         var sheetUrl = SITE_CONFIG.dataSources && SITE_CONFIG.dataSources.faqsSheetUrl;
 
@@ -117,43 +83,66 @@
             return;
         }
 
-        fetch(sheetUrl)
-            .then(function(response) {
-                if (!response.ok) {
-                    throw new Error('Failed to fetch FAQ data');
-                }
-                return response.text();
-            })
-            .then(function(csvText) {
-                var rows = parseCSV(csvText);
+        var spreadsheetId = extractSpreadsheetId(sheetUrl);
+        if (!spreadsheetId) {
+            showError('Invalid Google Sheets URL format');
+            return;
+        }
 
-                if (rows.length < 2) {
-                    showError('No FAQ data found in the spreadsheet');
-                    return;
-                }
+        // Use Google Visualization API with JSONP callback
+        var callbackName = 'faqCallback_' + Date.now();
+        var gvizUrl = 'https://docs.google.com/spreadsheets/d/' + spreadsheetId + '/gviz/tq?tqx=responseHandler:' + callbackName;
 
-                var faqs = [];
-                for (var i = 1; i < rows.length; i++) {
-                    var row = rows[i];
-                    if (row[0] && row[1]) {
-                        faqs.push({
-                            question: row[0],
-                            answer: row[1]
-                        });
-                    }
-                }
+        // Create callback function
+        window[callbackName] = function(response) {
+            // Clean up
+            delete window[callbackName];
+            var script = document.getElementById('faq-script');
+            if (script) script.remove();
 
-                if (faqs.length === 0) {
-                    showError('No valid FAQ entries found');
-                    return;
-                }
+            if (response.status === 'error') {
+                console.error('Google Sheets error:', response.errors);
+                showError('Unable to load FAQ data from the spreadsheet');
+                return;
+            }
 
-                renderFAQs(faqs);
-            })
-            .catch(function(error) {
-                console.error('Error loading FAQs:', error);
-                showError('Unable to load FAQs. Please try again later.');
-            });
+            var table = response.table;
+            if (!table || !table.rows || table.rows.length === 0) {
+                showError('No FAQ data found in the spreadsheet');
+                return;
+            }
+
+            var faqs = [];
+            for (var i = 0; i < table.rows.length; i++) {
+                var row = table.rows[i];
+                var question = row.c[0] && row.c[0].v ? row.c[0].v : '';
+                var answer = row.c[1] && row.c[1].v ? row.c[1].v : '';
+
+                if (question && answer) {
+                    faqs.push({
+                        question: question,
+                        answer: answer
+                    });
+                }
+            }
+
+            if (faqs.length === 0) {
+                showError('No valid FAQ entries found');
+                return;
+            }
+
+            renderFAQs(faqs);
+        };
+
+        // Load script (JSONP style)
+        var script = document.createElement('script');
+        script.id = 'faq-script';
+        script.src = gvizUrl;
+        script.onerror = function() {
+            delete window[callbackName];
+            showError('Unable to connect to Google Sheets. Please check the URL and sharing settings.');
+        };
+        document.head.appendChild(script);
     }
 
     if (document.readyState === 'loading') {

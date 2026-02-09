@@ -10,10 +10,13 @@
 // ============================================
 
 var SITE_CONFIG = {
-    // Google Sheets data sources (publish sheet as CSV: File > Share > Publish to web > CSV)
-    // Sheet should have columns: Question, Answer
+    // Google Sheets data sources
+    // Sheet should have columns: Question, Answer (first row is header)
+    // Use the original spreadsheet URL (not the "publish to web" URL)
+    // Example: https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit
+    // The sheet must be shared as "Anyone with the link can view"
     dataSources: {
-        faqsSheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTTTGEgscjLxJ4sv4Jv5-EIHJn73lT7bM90IAGgbg-bcG0vhfQbFRQuriykkCG8Y1re0o5mLhOhr6b8/pub?output=csv' // Paste your published Google Sheet CSV URL here
+        faqsSheetUrl: 'https://docs.google.com/spreadsheets/d/1XToStpV5oizXrwzgjSdOAzNTxXXLwmvo7v_uy3gZRVI/edit?usp=sharing' // Paste your Google Sheet URL here
     },
     sections: {
         countdown: true,
@@ -26,6 +29,7 @@ var SITE_CONFIG = {
     pages: {
         speakers: false,
         schedule: false,
+        logistics: true,
         faqs: true,
         scholarships: false,
         sponsors: false,

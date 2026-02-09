@@ -145,7 +145,17 @@ class TornPaperEffect {
             element.style.position = 'relative';
         }
 
+        // Check for custom paper color via data attribute
+        const customColor = element.dataset.paperColor;
+        const originalColor = this.options.paperColor;
+        if (customColor) {
+            this.options.paperColor = customColor;
+        }
+
         const { canvas, padding } = this.createTornPaper(element);
+
+        // Restore original color for other elements
+        this.options.paperColor = originalColor;
 
         // Style the canvas as background
         canvas.style.position = 'absolute';

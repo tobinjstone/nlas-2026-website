@@ -40,6 +40,7 @@ function applyConfig() {
     const pageToHref = {
         speakers: 'speakers.html',
         schedule: 'schedule.html',
+        logistics: 'logistics.html',
         faqs: 'faqs.html',
         scholarships: 'scholarships.html',
         sponsors: 'sponsors.html',

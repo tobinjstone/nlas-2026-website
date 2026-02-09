@@ -407,9 +407,7 @@ section {
 .cnl-ea-form-wrap .at-payment-method-buttons {
   margin-bottom: 1.25rem !important;
 }
-.cnl-ea-form-wrap .at-express-checkout-element-wrapper {
-  display: none !important;
-}
+
 .cnl-ea-form-wrap label.at-btn-radio {
   display: inline-block !important;
   padding: 0.75rem 1.5rem !important;
@@ -1891,4 +1889,436 @@ section {
     .sponsorship-packages {
         grid-template-columns: 1fr;
     }
+}
+
+/* ============================================
+   Page Hero (Subpages)
+   ============================================ */
+.page-hero {
+    min-height: 35vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: calc(var(--nav-height) + 2rem);
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.page-hero-content {
+    padding: 0 2rem;
+}
+
+.page-hero .page-title {
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.4);
+    color: var(--cnl-white);
+}
+
+.page-hero .page-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--cnl-white);
+    opacity: 0.9;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Logistics Page
+   ============================================ */
+.logistics-section {
+    padding: 3rem 2rem;
+}
+
+.logistics-section .section-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.logistics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .logistics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   Polaroid Cards
+   ============================================ */
+.polaroid-card {
+    background: var(--paper-cream);
+    padding: 0.75rem 0.75rem 1.5rem;
+    transform: rotate(var(--rotation, 0deg));
+    transition: var(--transition-smooth);
+    max-width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.polaroid-card:hover {
+    transform: rotate(var(--rotation, 0deg)) scale(1.03) translateY(-5px);
+    z-index: 10;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.polaroid-card.paper-torn {
+    filter: url(#filter_tornpaper)
+            drop-shadow(0 4px 8px var(--paper-shadow))
+            drop-shadow(0 10px 35px rgba(0, 0, 0, 0.15));
+}
+
+.polaroid-card.paper-torn:hover {
+    filter: url(#filter_tornpaper)
+            drop-shadow(0 8px 16px var(--paper-shadow))
+            drop-shadow(0 15px 50px rgba(0, 0, 0, 0.25));
+}
+
+.polaroid-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #e0e0e0;
+    margin-bottom: 1rem;
+}
+
+.polaroid-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.02) saturate(0.95);
+    transition: var(--transition-smooth);
+}
+
+.polaroid-card:hover .polaroid-photo img {
+    filter: contrast(1.05) saturate(1);
+}
+
+.polaroid-caption {
+    text-align: center;
+    color: var(--cnl-blue);
+}
+
+.polaroid-caption h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+}
+
+.polaroid-caption p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Handwriting style for captions */
+.polaroid-handwriting {
+    font-family: var(--font-typewriter);
+    font-size: 0.95rem !important;
+    transform: rotate(-1deg);
+    display: inline-block;
+}
+
+/* Larger polaroid variant for featured content */
+.polaroid-large {
+    max-width: 400px;
+    padding: 1rem 1rem 2rem;
+}
+
+.polaroid-large .polaroid-photo {
+    aspect-ratio: 4/3;
+}
+
+.polaroid-large .polaroid-caption h3 {
+    font-size: 1.2rem;
+}
+
+/* Smaller polaroid variant */
+.polaroid-small {
+    max-width: 220px;
+    padding: 0.5rem 0.5rem 1rem;
+    margin: 1rem 0;
+}
+
+.polaroid-small .polaroid-photo {
+    margin-bottom: 0.75rem;
+}
+
+.polaroid-small .polaroid-caption p {
+    font-size: 0.85rem;
+}
+
+.venue-tagline {
+    font-family: var(--font-typewriter);
+    font-size: 0.85rem !important;
+    color: var(--cnl-red);
+    margin-top: 0.25rem;
+}
+
+/* ============================================
+   Info Cards
+   ============================================ */
+.info-card {
+    background: var(--paper-cream);
+    padding: 1.5rem;
+    transform: rotate(var(--rotation, 0deg));
+    color: var(--cnl-blue);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.info-card.paper-torn {
+    filter: url(#filter_tornpaper)
+            drop-shadow(0 3px 6px var(--paper-shadow))
+            drop-shadow(0 8px 25px rgba(0, 0, 0, 0.12));
+}
+
+.info-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.75rem;
+    color: var(--cnl-red);
+}
+
+.info-card p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.booking-note {
+    font-family: var(--font-typewriter);
+    font-size: 0.85rem !important;
+    color: var(--cnl-blue);
+    opacity: 0.7;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* ============================================
+   Venue Feature Layout
+   ============================================ */
+.venue-feature {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.venue-details {
+    color: var(--cnl-white);
+}
+
+.venue-details p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.venue-address {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-typewriter);
+    font-size: 0.95rem !important;
+    background: rgba(253, 251, 233, 0.1);
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--cnl-white);
+}
+
+.venue-address svg {
+    width: 18px;
+    height: 18px;
+    color: var(--cnl-white);
+    flex-shrink: 0;
+}
+
+.venue-note {
+    font-style: italic;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .venue-feature {
+        grid-template-columns: 1fr;
+    }
+
+    .venue-feature .polaroid-large {
+        margin: 0 auto;
+    }
+}
+
+/* ============================================
+   Travel Section
+   ============================================ */
+.travel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.travel-subsection {
+    color: var(--cnl-white);
+}
+
+.subsection-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--cnl-white);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(253, 251, 233, 0.3);
+}
+
+/* Airport Cards */
+.airport-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.airport-card {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.25rem 0.75rem;
+    padding: 0.75rem;
+    background: rgba(253, 251, 233, 0.1);
+    border-radius: 4px;
+    border: 1px dashed rgba(253, 251, 233, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.airport-card:hover {
+    background: rgba(253, 251, 233, 0.15);
+    border-color: var(--cnl-white);
+}
+
+.airport-code {
+    grid-row: 1 / 3;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--cnl-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.airport-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.airport-note {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* Metro Info */
+.metro-info {
+    margin-top: 1.5rem;
+}
+
+.metro-info > p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.metro-stops {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.metro-stop {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: rgba(253, 251, 233, 0.1);
+    border-radius: 4px;
+}
+
+.metro-lines {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.metro-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.metro-dot.red { background: #BF0D3E; }
+.metro-dot.green { background: #00B140; }
+.metro-dot.yellow { background: #FFD200; }
+
+.metro-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.metro-details strong {
+    font-size: 0.95rem;
+}
+
+.metro-details span {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.smartrip-tip {
+    font-family: var(--font-typewriter);
+    font-size: 0.9rem !important;
+    background: rgba(253, 251, 233, 0.1);
+    padding: 1rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--cnl-white);
+}
+
+@media (max-width: 768px) {
+    .travel-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .travel-subsection .polaroid-card {
+        margin: 1.5rem auto;
+    }
+}
+
+/* Placeholder photo styling for logistics */
+.logistics-section .placeholder-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(44, 54, 89, 0.08);
+    gap: 0.5rem;
+}
+
+.placeholder-icon {
+    font-size: 2.5rem;
+}
+
+.placeholder-text {
+    font-family: var(--font-typewriter);
+    font-size: 0.8rem;
+    color: var(--cnl-blue);
+    opacity: 0.5;
 }
