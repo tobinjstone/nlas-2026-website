@@ -14,11 +14,30 @@ class TornPaperEffect {
             addTexture: options.addTexture !== false, // Add paper grain texture
             ...options
         };
+        this._nextSeed = 1;
     }
 
-    // Generate torn edge path
-    generateTornPath(ctx, width, height, padding) {
+    // Simple seeded PRNG (mulberry32) - produces consistent results for same seed
+    _seededRandom(seed) {
+        let t = seed + 0x6D2B79F5;
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    }
+
+    // Get or assign a stable seed for an element
+    _getSeed(element) {
+        if (!element._tornPaperSeed) {
+            element._tornPaperSeed = this._nextSeed++;
+        }
+        return element._tornPaperSeed;
+    }
+
+    // Generate torn edge path using seeded randomness
+    generateTornPath(ctx, width, height, padding, baseSeed) {
         const { tearSize, tearDetail } = this.options;
+        let callIndex = 0;
+        const rand = () => this._seededRandom(baseSeed * 13397 + callIndex++);
 
         ctx.beginPath();
 
@@ -30,8 +49,8 @@ class TornPaperEffect {
 
         // Top edge (left to right)
         while (x < width - padding) {
-            const segmentLength = tearSize * (0.5 + Math.random() * tearDetail);
-            const tearDepth = (Math.random() - 0.5) * tearSize * tearDetail;
+            const segmentLength = tearSize * (0.5 + rand() * tearDetail);
+            const tearDepth = (rand() - 0.5) * tearSize * tearDetail;
 
             x = Math.min(x + segmentLength, width - padding);
             y = padding + tearDepth;
@@ -42,8 +61,8 @@ class TornPaperEffect {
         // Right edge (top to bottom)
         x = width - padding;
         while (y < height - padding) {
-            const segmentLength = tearSize * (0.5 + Math.random() * tearDetail);
-            const tearDepth = (Math.random() - 0.5) * tearSize * tearDetail;
+            const segmentLength = tearSize * (0.5 + rand() * tearDetail);
+            const tearDepth = (rand() - 0.5) * tearSize * tearDetail;
 
             y = Math.min(y + segmentLength, height - padding);
             x = width - padding + tearDepth;
@@ -54,8 +73,8 @@ class TornPaperEffect {
         // Bottom edge (right to left)
         y = height - padding;
         while (x > padding) {
-            const segmentLength = tearSize * (0.5 + Math.random() * tearDetail);
-            const tearDepth = (Math.random() - 0.5) * tearSize * tearDetail;
+            const segmentLength = tearSize * (0.5 + rand() * tearDetail);
+            const tearDepth = (rand() - 0.5) * tearSize * tearDetail;
 
             x = Math.max(x - segmentLength, padding);
             y = height - padding + tearDepth;
@@ -66,8 +85,8 @@ class TornPaperEffect {
         // Left edge (bottom to top)
         x = padding;
         while (y > padding) {
-            const segmentLength = tearSize * (0.5 + Math.random() * tearDetail);
-            const tearDepth = (Math.random() - 0.5) * tearSize * tearDetail;
+            const segmentLength = tearSize * (0.5 + rand() * tearDetail);
+            const tearDepth = (rand() - 0.5) * tearSize * tearDetail;
 
             y = Math.max(y - segmentLength, padding);
             x = padding + tearDepth;
@@ -78,15 +97,15 @@ class TornPaperEffect {
         ctx.closePath();
     }
 
-    // Add subtle paper texture
-    addPaperTexture(ctx, width, height) {
+    // Add subtle paper texture using seeded randomness
+    addPaperTexture(ctx, width, height, baseSeed) {
         const imageData = ctx.getImageData(0, 0, width, height);
         const data = imageData.data;
 
         for (let i = 0; i < data.length; i += 4) {
             // Only add noise to non-transparent pixels
             if (data[i + 3] > 0) {
-                const noise = (Math.random() - 0.5) * 8;
+                const noise = (this._seededRandom(baseSeed * 7919 + i) - 0.5) * 8;
                 data[i] = Math.max(0, Math.min(255, data[i] + noise));     // R
                 data[i + 1] = Math.max(0, Math.min(255, data[i + 1] + noise)); // G
                 data[i + 2] = Math.max(0, Math.min(255, data[i + 2] + noise)); // B
@@ -98,6 +117,7 @@ class TornPaperEffect {
 
     // Create torn paper canvas for an element
     createTornPaper(element) {
+        const seed = this._getSeed(element);
         const rect = element.getBoundingClientRect();
         const padding = 30; // Extra space for shadow and tears
 
@@ -123,15 +143,15 @@ class TornPaperEffect {
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = this.options.shadowOffsetY;
 
-        // Generate and fill the torn path
-        this.generateTornPath(ctx, width, height, padding);
+        // Generate and fill the torn path (seeded for consistency)
+        this.generateTornPath(ctx, width, height, padding, seed);
         ctx.fillStyle = this.options.paperColor;
         ctx.fill();
         ctx.restore();
 
         // Add paper texture if enabled
         if (this.options.addTexture) {
-            this.addPaperTexture(ctx, canvas.width, canvas.height);
+            this.addPaperTexture(ctx, canvas.width, canvas.height, seed);
         }
 
         return { canvas, padding };
@@ -204,11 +224,19 @@ function initTornPaper() {
 
     tornPaper.applyToAll();
 
-    // Refresh on window resize (debounced)
+    // Refresh on window resize (debounced), but only when width changes.
+    // Mobile browsers fire resize when the address bar shows/hides (height-only
+    // change during scroll), which would needlessly regenerate the canvases.
     let resizeTimeout;
+    let lastViewportWidth = window.innerWidth;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => tornPaper.refresh(), 250);
+        resizeTimeout = setTimeout(() => {
+            if (window.innerWidth !== lastViewportWidth) {
+                lastViewportWidth = window.innerWidth;
+                tornPaper.refresh();
+            }
+        }, 250);
     });
 
     // Make available globally if needed

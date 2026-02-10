@@ -843,6 +843,32 @@ section {
     transform: rotate(var(--rotation, 0deg)) scale(1.05) translateY(-5px);
 }
 
+/* Torn-paper filter on a pseudo-element so the photo stays clean */
+.speaker-clipping.paper-torn {
+    position: relative;
+    background: transparent;
+}
+
+.speaker-clipping.paper-torn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #FDFBE9;
+    filter: url(#filter_tornpaper)
+            drop-shadow(0 4px 8px var(--paper-shadow))
+            drop-shadow(0 10px 35px rgba(0, 0, 0, 0.15));
+    z-index: -1;
+}
+
+.speaker-clipping.paper-torn:hover::before {
+    filter: url(#filter_tornpaper)
+            drop-shadow(0 8px 16px var(--paper-shadow))
+            drop-shadow(0 15px 50px rgba(0, 0, 0, 0.25));
+}
+
 .clipping-photo {
     width: 100%;
     aspect-ratio: 1;
