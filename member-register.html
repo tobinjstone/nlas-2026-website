@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Member Registration | NLAS 2026</title>
     <meta name="description" content="Exclusive member registration for the New Liberal Action Summit 2026. Enjoy discounted rates and exclusive benefits.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://nlas.cnliberalism.org/member-register.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nlas.cnliberalism.org/member-register.html">
+    <meta property="og:title" content="Member Registration | NLAS 2026">
+    <meta property="og:description" content="Exclusive member registration for the New Liberal Action Summit 2026. Enjoy discounted rates and exclusive benefits.">
+    <meta property="og:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
+    <meta property="og:site_name" content="NLAS 2026">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cnliberalism">
+    <meta name="twitter:title" content="Member Registration | NLAS 2026">
+    <meta name="twitter:description" content="Exclusive member registration for the New Liberal Action Summit 2026. Enjoy discounted rates and exclusive benefits.">
+    <meta name="twitter:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
@@ -15,38 +32,27 @@
     <div id="header-placeholder" data-current-page="register"></div>
 
     <main class="page-content">
-        <section class="member-register-section">
+        <section class="register-section">
             <h1 class="page-title section-title-light">Member Registration</h1>
-            <p class="page-subtitle">Exclusive benefits for CNL members</p>
+            <p class="page-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">This registration page is exclusively for dues-paying CNL members. <strong>Please do not share this link with anyone.</strong> If someone you know is interested in attending, please direct them to the <a href="register.html" style="color: white;">general registration page</a>.</p>
 
-            <div class="paper-sheet paper-torn" style="--rotation: -0.4deg;">
+            <!-- Registration Form Area -->
+            <div class="paper-sheet paper-torn" style="--rotation: 0.3deg;">
                 <div class="paper-content">
-                    <div class="member-benefits">
-                        <h2>Your Member Benefits</h2>
-                        <ul class="benefits-list">
-                            <li>Discounted registration rate</li>
-                            <li>Priority session selection</li>
-                            <li>Exclusive networking events</li>
-                            <li>Members-only swag</li>
-                        </ul>
-                    </div>
+                    <div class="cnl-ea-form-wrap">
+                    <link rel='preload' href='https://static.everyaction.com/ea-actiontag/at.js' as='script' crossorigin='anonymous'>
+                    <script type='text/javascript' src='https://static.everyaction.com/ea-actiontag/at.js' crossorigin='anonymous'></script>
 
-                    <div class="member-pricing">
-                        <div class="price-comparison">
-                            <span class="regular-price">Regular: $XXX</span>
-                            <span class="member-price">Your Price: $XXX</span>
+                        <div class="ngp-form"
+                            data-form-url="https://secure.ngpvan.com/v1/Forms/pHz3KDg0UES6iUerP71EVA2"
+                            data-fastaction-endpoint="https://fastaction.ngpvan.com"
+                            data-inline-errors="true"
+                            data-fastaction-nologin="true"
+                            data-databag-endpoint="https://profile.ngpvan.com"
+                            data-databag="everybody"
+                            data-mobile-autofocus="false">
                         </div>
                     </div>
-
-                    <!-- Member verification / login area -->
-                    <div class="member-verify">
-                        <h3>Verify Your Membership</h3>
-                        <p>[Verification form or login placeholder]</p>
-                    </div>
-
-                    <a href="#" class="btn btn-primary btn-large" style="display: block; width: fit-content; margin: 0 auto;">Register as Member</a>
-
-                    <p class="not-member">Not a member yet? <a href="#">Join CNL</a> to unlock member pricing.</p>
                 </div>
             </div>
         </section>

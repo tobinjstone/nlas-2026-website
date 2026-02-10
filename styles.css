@@ -745,6 +745,72 @@ section {
     margin-top: 1.5rem;
 }
 
+/* Letter-style paper sheet */
+.letter-sheet {
+    max-width: 750px;
+    padding: 3.5rem 4rem;
+}
+
+.letter-content {
+    position: relative;
+    z-index: 1;
+}
+
+.letter-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--cnl-red);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.75rem;
+}
+
+.letter-divider {
+    width: 60px;
+    height: 3px;
+    background: var(--cnl-red);
+    margin: 0 auto 2rem;
+    opacity: 0.6;
+}
+
+.letter-content .about-text {
+    text-align: left;
+}
+
+.letter-content .about-text .lead {
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+
+.letter-content .about-text .signature {
+    text-align: right;
+    font-family: var(--font-typewriter);
+    font-size: 1rem;
+}
+
+.letter-content .btn {
+    display: block;
+    width: fit-content;
+    margin: 2rem auto 0;
+}
+
+@media (max-width: 768px) {
+    .letter-sheet {
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .letter-sheet {
+        padding: 2rem 1.5rem;
+    }
+
+    .letter-content .about-text .lead {
+        text-align: left;
+    }
+}
+
 /* ============================================
    Featured Speakers Section - Newspaper Clippings
    ============================================ */
@@ -896,6 +962,19 @@ section {
     font-size: 1rem;
 }
 
+/* Home page schedule overview cards */
+.schedule-overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.schedule-overview-cards .info-card {
+    text-align: center;
+}
+
 .schedule-overview {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -955,7 +1034,8 @@ section {
     font-family: var(--font-typewriter);
 }
 
-.notebook-content .btn {
+.notebook-content .btn,
+.paper-content .btn {
     display: block;
     width: fit-content;
     margin: 0 auto;
@@ -1000,6 +1080,47 @@ section {
 .partners-section .btn {
     display: block;
     width: fit-content;
+    margin: 0 auto;
+}
+
+/* Home page partner logo cards */
+.partners-grid-home {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.partner-logo-card {
+    background: var(--paper-cream);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    color: var(--cnl-blue);
+    font-size: 0.8rem;
+    opacity: 0.6;
+    transform: rotate(var(--rotation, 0deg));
+    transition: var(--transition-smooth);
+}
+
+.partner-logo-card:hover {
+    transform: rotate(var(--rotation, 0deg)) translateY(-4px);
+    opacity: 0.8;
+}
+
+/* ============================================
+   Email Interest Section
+   ============================================ */
+.email-interest-section {
+    padding: 3.5rem 2rem;
+    text-align: center;
+}
+
+.email-interest-section .section-container {
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -1147,7 +1268,7 @@ section {
     font-size: 1.2rem;
     text-align: center;
     opacity: 0.9;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     color: var(--cnl-white);
 }
 
@@ -1651,6 +1772,323 @@ section {
 }
 
 /* ============================================
+   About Page - Pull Quote
+   ============================================ */
+.about-pullquote {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--cnl-red);
+    text-align: center;
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0;
+    border-top: 2px solid rgba(159, 60, 57, 0.3);
+    border-bottom: 2px solid rgba(159, 60, 57, 0.3);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   About Page - CNL Tagline & Pillars
+   ============================================ */
+.cnl-tagline {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: var(--cnl-white);
+    text-align: center;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 2.5rem;
+    border-top: 1px solid rgba(253, 251, 233, 0.3);
+    border-bottom: 1px solid rgba(253, 251, 233, 0.3);
+    padding: 1rem 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cnl-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cnl-pillars .info-card {
+    text-align: center;
+}
+
+/* ============================================
+   About Page - Impact Stats
+   ============================================ */
+.impact-stats-section {
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.impact-stats {
+    display: flex;
+    justify-content: center;
+    gap: clamp(2rem, 6vw, 5rem);
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.impact-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    background: var(--paper-cream);
+    padding: 1.5rem 2rem;
+    transform: rotate(var(--rotation, 0deg));
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.impact-stat:hover {
+    transform: rotate(var(--rotation, 0deg)) translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.impact-number {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    font-weight: 700;
+    color: var(--cnl-red);
+    line-height: 1;
+}
+
+.impact-label {
+    font-family: var(--font-display);
+    font-size: clamp(0.7rem, 2vw, 0.85rem);
+    color: var(--cnl-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 0.5rem;
+}
+
+/* ============================================
+   About Page - What to Expect
+   ============================================ */
+.expect-heading {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--cnl-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: center;
+    margin: 2rem 0 1.5rem;
+}
+
+.expect-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.expect-grid-cards .info-card {
+    text-align: center;
+}
+
+.expect-grid-cards .info-card h3 {
+    text-align: center;
+}
+
+.expect-card {
+    background: rgba(44, 54, 89, 0.05);
+    border: 1px dashed rgba(44, 54, 89, 0.2);
+    border-radius: 4px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.expect-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    color: var(--cnl-red);
+}
+
+.expect-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.expect-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    color: var(--cnl-red);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.75rem;
+}
+
+.expect-card p {
+    font-size: 0.95rem;
+    color: var(--cnl-blue);
+    line-height: 1.7;
+}
+
+/* ============================================
+   About Page - Past Speakers
+   ============================================ */
+.past-speakers-section {
+    padding: 3.5rem 2rem;
+    text-align: center;
+}
+
+.past-speakers-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.past-speakers-group {
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(253, 251, 233, 0.15);
+}
+
+.past-speakers-group:last-child {
+    border-bottom: none;
+}
+
+.past-speakers-category {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--cnl-white);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.past-speakers-names {
+    font-size: 1.05rem;
+    color: var(--cnl-white);
+    opacity: 0.75;
+    line-height: 1.7;
+}
+
+/* ============================================
+   About Page - Speaker Badges
+   ============================================ */
+.speaker-badges-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.speaker-badge-group {
+    text-align: center;
+}
+
+.speaker-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.speaker-badge {
+    background: var(--paper-cream);
+    padding: 0.6rem 1.25rem;
+    transform: rotate(var(--rotation, 0deg));
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: var(--transition-smooth);
+}
+
+.speaker-badge:hover {
+    transform: rotate(var(--rotation, 0deg)) translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+.badge-name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    color: var(--cnl-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.speaker-badge-more {
+    background: transparent;
+    border: 2px dashed rgba(253, 251, 233, 0.3);
+    box-shadow: none;
+}
+
+.speaker-badge-more .badge-name {
+    color: var(--cnl-white);
+    opacity: 0.7;
+    font-family: var(--font-typewriter);
+    text-transform: none;
+    font-style: italic;
+}
+
+.speaker-badge-more:hover {
+    border-color: rgba(253, 251, 233, 0.5);
+    box-shadow: none;
+}
+
+/* ============================================
+   About Page - Past Summits Gallery
+   ============================================ */
+.past-summits-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Legacy gallery grid (unused) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.gallery-placeholder {
+    background: rgba(44, 54, 89, 0.05);
+    border: 2px dashed rgba(44, 54, 89, 0.2);
+    border-radius: 4px;
+    aspect-ratio: 4/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--cnl-blue);
+    opacity: 0.4;
+    font-size: 0.85rem;
+    font-family: var(--font-typewriter);
+}
+
+.gallery-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================
    Responsive Design
    ============================================ */
 @media (max-width: 968px) {
@@ -1859,6 +2297,14 @@ section {
         grid-template-columns: 1fr;
     }
 
+    .expect-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .btn {
         padding: 0.875rem 2rem;
         font-size: 0.9rem;
@@ -1925,7 +2371,10 @@ section {
    Logistics Page
    ============================================ */
 .logistics-section {
-    padding: 3rem 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 3rem;
+    padding-top: 0rem;
 }
 
 .logistics-section .section-container {
@@ -1933,16 +2382,61 @@ section {
     margin: 0 auto;
 }
 
-.logistics-grid {
+#travel.logistics-section {
+    padding-bottom: 6rem;
+}
+
+/* ============================================
+   Lodging Feature Layout
+   ============================================ */
+.lodging-feature {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
     align-items: start;
 }
 
+.lodging-details {
+    color: var(--cnl-white);
+}
+
+.lodging-details > p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.lodging-other {
+    margin-top: 1.5rem;
+    background: rgba(253, 251, 233, 0.1);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    border-left: 3px solid var(--cnl-white);
+}
+
+.lodging-other h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+    color: var(--cnl-white);
+}
+
+.lodging-other p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.85;
+}
+
 @media (max-width: 768px) {
-    .logistics-grid {
+    .lodging-feature {
         grid-template-columns: 1fr;
+    }
+
+    .lodging-feature .polaroid-large {
+        margin: 0 auto;
     }
 }
 
@@ -2021,6 +2515,15 @@ section {
     font-size: 0.95rem !important;
     transform: rotate(-1deg);
     display: inline-block;
+}
+
+/* No-caption variant — photo only, no extra bottom padding */
+.polaroid-card.polaroid-no-caption {
+    padding-bottom: 0.75rem !important;
+}
+
+.polaroid-no-caption .polaroid-photo {
+    margin-bottom: 0;
 }
 
 /* Larger polaroid variant for featured content */
@@ -2163,6 +2666,11 @@ section {
     gap: 3rem;
 }
 
+.travel-grid.travel-grid-stacked {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
 .travel-subsection {
     color: var(--cnl-white);
 }
@@ -2225,6 +2733,63 @@ section {
     opacity: 0.7;
 }
 
+/* Getting to DC Card */
+.getting-to-dc-card .airport-cards {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.getting-to-dc-card .airport-card {
+    flex: 1;
+    background: rgba(44, 54, 89, 0.08);
+    border: 1px dashed rgba(44, 54, 89, 0.25);
+    color: var(--cnl-blue);
+}
+
+.getting-to-dc-card .airport-card:hover {
+    background: rgba(44, 54, 89, 0.12);
+    border-color: var(--cnl-blue);
+}
+
+.getting-to-dc-card .airport-code {
+    color: var(--cnl-red);
+}
+
+.getting-to-dc-card .airport-name {
+    color: var(--cnl-blue);
+}
+
+.getting-to-dc-card .airport-note {
+    color: var(--cnl-blue);
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .getting-to-dc-card .airport-cards {
+        flex-direction: column;
+    }
+}
+
+/* Getting Around Feature Layout */
+.getting-around-feature {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.getting-around-details {
+    color: var(--cnl-white);
+}
+
+.getting-around-details > p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
 /* Metro Info */
 .metro-info {
     margin-top: 1.5rem;
@@ -2248,7 +2813,7 @@ section {
     align-items: center;
     gap: 1rem;
     padding: 0.75rem;
-    background: rgba(253, 251, 233, 0.1);
+    background: rgba(253, 251, 233, 0.2);
     border-radius: 4px;
 }
 
@@ -2285,7 +2850,7 @@ section {
 .smartrip-tip {
     font-family: var(--font-typewriter);
     font-size: 0.9rem !important;
-    background: rgba(253, 251, 233, 0.1);
+    background: rgba(253, 251, 233, 0.2);
     padding: 1rem;
     border-radius: 4px;
     border-left: 3px solid var(--cnl-white);
@@ -2297,8 +2862,12 @@ section {
         gap: 2rem;
     }
 
-    .travel-subsection .polaroid-card {
-        margin: 1.5rem auto;
+    .getting-around-feature {
+        grid-template-columns: 1fr;
+    }
+
+    .getting-around-feature .polaroid-card {
+        margin: 0 auto;
     }
 }
 

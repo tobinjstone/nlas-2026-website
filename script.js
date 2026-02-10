@@ -38,6 +38,7 @@ function applyConfig() {
 
     // Remove nav links for disabled pages
     const pageToHref = {
+        about: 'about.html',
         speakers: 'speakers.html',
         schedule: 'schedule.html',
         logistics: 'logistics.html',
@@ -234,6 +235,12 @@ function initFAQAccordion() {
 
                 // Toggle current item
                 item.classList.toggle('active');
+
+                // Refresh torn paper background after expand/collapse transition
+                const paperEl = item.closest('.paper-torn');
+                if (paperEl && window.tornPaperEffect) {
+                    setTimeout(() => window.tornPaperEffect.applyTo(paperEl), 350);
+                }
             });
         }
     });

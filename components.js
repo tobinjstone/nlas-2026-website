@@ -12,7 +12,7 @@ function getHeader(currentPage = '') {
                 <span></span>
             </button>
             <ul class="nav-links">
-                <li><a href="index.html#about" ${currentPage === 'about' ? 'class="active"' : ''}>About</a></li>
+                <li><a href="about.html" ${currentPage === 'about' ? 'class="active"' : ''}>About</a></li>
                 <li><a href="schedule.html" ${currentPage === 'schedule' ? 'class="active"' : ''}>Schedule</a></li>
                 <li><a href="speakers.html" ${currentPage === 'speakers' ? 'class="active"' : ''}>Speakers</a></li>
                 <li><a href="logistics.html" ${currentPage === 'logistics' ? 'class="active"' : ''}>Logistics</a></li>
