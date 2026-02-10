@@ -41,6 +41,18 @@ body {
     line-height: 1.6;
 }
 
+/* Global link colors */
+a:not(.btn) {
+    color: inherit;
+}
+
+.info-card a:not(.btn),
+.polaroid-caption a:not(.btn),
+.faq-answer a:not(.btn),
+.not-member a:not(.btn) {
+    color: var(--cnl-red);
+}
+
 /* ============================================
    Continuous Page Background
    ============================================ */
@@ -2432,6 +2444,12 @@ section {
     margin-bottom: 1rem;
 }
 
+.booking-coming-soon {
+    font-style: italic;
+    opacity: 0.85;
+    margin-top: 0.5rem;
+}
+
 .lodging-other {
     margin-top: 1.5rem;
     background: rgba(253, 251, 233, 0.1);
@@ -2647,6 +2665,13 @@ section {
     font-size: 1rem;
     line-height: 1.7;
     margin-bottom: 1rem;
+}
+
+.venue-details .btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .venue-address {
