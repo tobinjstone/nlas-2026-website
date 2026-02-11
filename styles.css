@@ -828,7 +828,7 @@ section {
 }
 
 .letter-content .about-text .signature {
-    text-align: right;
+    text-align: left;
     font-family: var(--font-typewriter);
     font-size: 1rem;
 }
