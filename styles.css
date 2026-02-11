@@ -372,8 +372,7 @@ background: transparent !important;
   width: 100% !important;
   border-collapse: collapse !important;
   color: #2C3659 !important;
-  background-color: transparent !important;
-  margin-left: 0.5rem;
+
 }
 .cnl-ea-form-wrap .at-table thead th {
   color: var(--cnl-red) !important;
@@ -382,7 +381,7 @@ background: transparent !important;
   text-transform: uppercase !important;
   letter-spacing: 0.1em !important;
   border-bottom: 1px dashed rgba(44, 54, 89, 0.2) !important;
-  padding: 0.75rem 0.5rem !important;
+
   text-align: left !important;
   background-color: transparent !important;
 }
