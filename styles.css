@@ -1817,9 +1817,82 @@ section {
 }
 
 /* ============================================
+   Password Gate
+   ============================================ */
+.password-gate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 2rem;
+}
+
+.password-gate-box {
+    background: white;
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(44, 54, 89, 0.15);
+}
+
+.password-gate-box h2 {
+    font-family: var(--font-display);
+    color: var(--cnl-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.password-gate-box p {
+    color: var(--cnl-blue);
+    margin-bottom: 1rem;
+}
+
+.password-gate-box form {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.password-gate-box input[type="password"] {
+    padding: 0.6rem 1rem;
+    border: 2px solid var(--cnl-blue);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    flex: 1;
+    max-width: 250px;
+}
+
+.password-gate-box input[type="password"]:focus {
+    outline: none;
+    border-color: var(--cnl-red);
+}
+
+.password-gate-box button {
+    padding: 0.6rem 1.5rem;
+    background: var(--cnl-red);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.password-gate-box button:hover {
+    background: var(--cnl-red-dark);
+}
+
+/* ============================================
    Member Registration Styles
    ============================================ */
-.member-register-section {
+.member-registration-section {
     padding: 3.5rem 2rem;
 }
 

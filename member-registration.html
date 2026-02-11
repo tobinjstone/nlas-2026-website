@@ -10,9 +10,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="canonical" href="https://nlas.cnliberalism.org/member-register.html">
+    <link rel="canonical" href="https://nlas.cnliberalism.org/member-registration.html">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nlas.cnliberalism.org/member-register.html">
+    <meta property="og:url" content="https://nlas.cnliberalism.org/member-registration.html">
     <meta property="og:title" content="Member Registration | NLAS 2026">
     <meta property="og:description" content="Exclusive member registration for the New Liberal Action Summit 2026. Enjoy discounted rates and exclusive benefits.">
     <meta property="og:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
@@ -31,7 +31,21 @@
 <body>
     <div id="header-placeholder" data-current-page="register"></div>
 
-    <main class="page-content">
+    <!-- Password Gate -->
+    <div id="password-gate" class="password-gate">
+        <div class="password-gate-box">
+            <h2>Members Only</h2>
+            <p>Enter the member password to access registration.</p>
+            <form id="password-form" onsubmit="return checkPassword(event)">
+                <input type="password" id="gate-password" placeholder="Enter password" autocomplete="off">
+                <button type="submit">Enter</button>
+            </form>
+            <p id="gate-error" style="color: var(--cnl-red); margin-top: 0.5rem; display: none;">Incorrect password. Please try again.</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">Not a member? <a href="register.html" style="color: var(--cnl-red);">Register here</a> instead.</p>
+        </div>
+    </div>
+
+    <main class="page-content" id="registration-content" style="display: none;">
         <section class="register-section">
             <h1 class="page-title section-title-light">Member Registration</h1>
             <p class="page-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">This registration page is exclusively for dues-paying CNL members. <strong>Please do not share this link with anyone.</strong> If someone you know is interested in attending, please direct them to the <a href="register.html" style="color: white;">general registration page</a>.</p>
@@ -44,7 +58,7 @@
                     <script type='text/javascript' src='https://static.everyaction.com/ea-actiontag/at.js' crossorigin='anonymous'></script>
 
                         <div class="ngp-form"
-                            data-form-url="https://secure.ngpvan.com/v1/Forms/pHz3KDg0UES6iUerP71EVA2"
+                            data-form-url="https://secure.ngpvan.com/v1/Forms/CAdATmma_ESmmvV1c-kTuQ2"
                             data-fastaction-endpoint="https://fastaction.ngpvan.com"
                             data-inline-errors="true"
                             data-fastaction-nologin="true"
@@ -57,6 +71,42 @@
             </div>
         </section>
     </main>
+
+    <script>
+        // Simple hash to avoid storing password in plain text in source
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash |= 0;
+            }
+            return hash;
+        }
+
+        const PASS_HASH = simpleHash('DEFENDLIBERALISM');
+
+        function checkPassword(e) {
+            e.preventDefault();
+            const input = document.getElementById('gate-password').value.toUpperCase().trim();
+            if (simpleHash(input) === PASS_HASH) {
+                document.getElementById('password-gate').style.display = 'none';
+                document.getElementById('registration-content').style.display = '';
+                sessionStorage.setItem('member-auth', 'true');
+            } else {
+                document.getElementById('gate-error').style.display = 'block';
+                document.getElementById('gate-password').value = '';
+                document.getElementById('gate-password').focus();
+            }
+            return false;
+        }
+
+        // Persist access for the browser session
+        if (sessionStorage.getItem('member-auth') === 'true') {
+            document.getElementById('password-gate').style.display = 'none';
+            document.getElementById('registration-content').style.display = '';
+        }
+    </script>
 
     <div id="footer-placeholder"></div>
 
