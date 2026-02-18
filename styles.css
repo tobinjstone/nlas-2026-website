@@ -1738,6 +1738,9 @@ section {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
 }
 
 .scholarship-form .form-group {
@@ -1763,12 +1766,15 @@ section {
     font-family: var(--font-body);
     font-size: 1rem;
     color: var(--cnl-blue);
+    caret-color: var(--cnl-blue);
     border: none;
     border-bottom: 1.5px solid rgba(44, 54, 89, 0.3);
-    background: transparent;
+    background: var(--paper-cream);
     padding: 0.5rem 0.25rem;
     width: 100%;
     transition: border-color 0.2s;
+    position: relative;
+    z-index: 2;
 }
 
 .scholarship-form input[type="text"]:focus,
@@ -1783,12 +1789,15 @@ section {
     font-family: var(--font-body);
     font-size: 1rem;
     color: var(--cnl-blue);
+    caret-color: var(--cnl-blue);
     border: 1.5px dashed rgba(44, 54, 89, 0.2);
-    background: transparent;
+    background: var(--paper-cream);
     padding: 0.5rem;
     width: 100%;
     resize: vertical;
     transition: border-color 0.2s;
+    position: relative;
+    z-index: 2;
 }
 
 .scholarship-form textarea:focus {
