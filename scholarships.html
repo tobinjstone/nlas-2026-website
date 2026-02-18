@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scholarships | NLAS 2026</title>
-    <meta name="description" content="Learn about scholarship opportunities to attend NLAS 2026.">
+    <meta name="description" content="Apply for a need-based scholarship to attend the New Liberal Action Summit 2026 in Washington, DC.">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
@@ -14,13 +14,13 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nlas.cnliberalism.org/scholarships.html">
     <meta property="og:title" content="Scholarships | NLAS 2026">
-    <meta property="og:description" content="Learn about scholarship opportunities to attend NLAS 2026.">
+    <meta property="og:description" content="Apply for a need-based scholarship to attend the New Liberal Action Summit 2026 in Washington, DC.">
     <meta property="og:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
     <meta property="og:site_name" content="NLAS 2026">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@cnliberalism">
     <meta name="twitter:title" content="Scholarships | NLAS 2026">
-    <meta name="twitter:description" content="Learn about scholarship opportunities to attend NLAS 2026.">
+    <meta name="twitter:description" content="Apply for a need-based scholarship to attend the New Liberal Action Summit 2026 in Washington, DC.">
     <meta name="twitter:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,48 +31,374 @@
 <body>
     <div id="header-placeholder" data-current-page="scholarships"></div>
 
-    <main class="page-content">
-        <section class="scholarships-section">
-            <div class="paper-sheet paper-torn" style="--rotation: -0.5deg;">
-                <div class="paper-content">
-                    <h1 class="section-title">Scholarships & Financial Aid</h1>
-                    <p class="lead-text">We believe cost should never be a barrier to participation.</p>
+    <!-- Page Hero -->
+    <header class="page-hero">
+        <div class="page-hero-content">
+            <h1 class="page-title">Scholarships</h1>
+        </div>
+    </header>
 
-                    <div class="scholarship-info">
-                        <div class="info-block">
-                            <h2>Available Support</h2>
-                            <ul class="scholarship-list">
-                                <li><strong>Full Scholarships:</strong> Cover registration, travel, and lodging</li>
-                                <li><strong>Partial Scholarships:</strong> Cover registration fees</li>
-                                <li><strong>Travel Grants:</strong> Assistance with transportation costs</li>
-                            </ul>
-                        </div>
-
-                        <div class="info-block">
-                            <h2>Who Should Apply?</h2>
-                            <p>Scholarships are available to students, young professionals, community organizers, and anyone for whom the cost of attendance would be a significant barrier. We especially encourage applications from underrepresented communities and first-time attendees.</p>
-                        </div>
-
-                        <div class="info-block">
-                            <h2>How to Apply</h2>
-                            <p>Complete the scholarship application form below. Applications are reviewed on a rolling basis, and you will be notified of your status via email. Please include a brief statement about why you'd like to attend NLAS 2026 and how it will support your work.</p>
-                        </div>
-
-                        <div class="info-block">
-                            <h2>Important Dates</h2>
-                            <ul class="dates-list">
-                                <li><strong>Application Opens:</strong> TBD</li>
-                                <li><strong>Application Deadline:</strong> TBD</li>
-                                <li><strong>Notifications Sent:</strong> TBD</li>
-                            </ul>
-                        </div>
+    <!-- Info Section -->
+    <section class="logistics-section">
+        <div class="section-container">
+            <div class="paper-sheet paper-torn letter-sheet" style="--rotation: -0.5deg;">
+                <div class="letter-content">
+                    <div class="about-text">
+                        <h2 class="letter-heading">Scholarship Applications</h2>
+                        <div class="letter-divider"></div>
+                        <p>The Center for New Liberalism offers need-based scholarships for NLAS 2026 attendance, covering registration fees. Our goal is to ensure that financial constraints don't prevent passionate liberals from joining us in Washington, DC.</p>
+                        <p>The application deadline is TBD. All applicants will be notified of their status via email.</p>
                     </div>
-
-                    <a href="#apply" class="btn btn-primary" style="display: block; width: fit-content; margin: 0 auto;">Apply for Scholarship</a>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="logistics-section">
+        <div class="section-container">
+            <div class="paper-sheet paper-torn" style="--rotation: 0.3deg; max-width: 800px;">
+                <div class="letter-content">
+                    <h2 class="letter-heading">Application Form</h2>
+                    <div class="letter-divider"></div>
+
+                    <div id="form-error" class="scholarship-form-message scholarship-form-error" style="display: none;"></div>
+
+                    <form id="scholarship-form" class="scholarship-form" novalidate>
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required>
+                            <span class="field-error"></span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="field-error"></span>
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div class="form-group">
+                            <label for="dob">Date of Birth <span class="required">*</span></label>
+                            <input type="date" id="dob" name="dob" required>
+                            <span class="field-error"></span>
+                        </div>
+
+                        <!-- Mailing Address -->
+                        <fieldset class="form-fieldset">
+                            <legend>Address</legend>
+
+                            <div class="form-group">
+                                <label for="streetAddress">Street Address <span class="required">*</span></label>
+                                <input type="text" id="streetAddress" name="streetAddress" required>
+                                <span class="field-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="addressLine2">Address Line 2</label>
+                                <input type="text" id="addressLine2" name="addressLine2">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="city">City <span class="required">*</span></label>
+                                <input type="text" id="city" name="city" required>
+                                <span class="field-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="state">State / Province <span class="required">*</span></label>
+                                <input type="text" id="state" name="state" required>
+                                <span class="field-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="zip">Zip / Postal Code <span class="required">*</span></label>
+                                <input type="text" id="zip" name="zip" required>
+                                <span class="field-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Country <span class="required">*</span></label>
+                                <select id="country" name="country" required>
+                                    <option value="">Select a country</option>
+                                    <option value="United States" selected>United States</option>
+                                    <option disabled>───────</option>
+                                    <option value="Afghanistan">Afghanistan</option>
+                                    <option value="Albania">Albania</option>
+                                    <option value="Algeria">Algeria</option>
+                                    <option value="Andorra">Andorra</option>
+                                    <option value="Angola">Angola</option>
+                                    <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Armenia">Armenia</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Austria">Austria</option>
+                                    <option value="Azerbaijan">Azerbaijan</option>
+                                    <option value="Bahamas">Bahamas</option>
+                                    <option value="Bahrain">Bahrain</option>
+                                    <option value="Bangladesh">Bangladesh</option>
+                                    <option value="Barbados">Barbados</option>
+                                    <option value="Belarus">Belarus</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Belize">Belize</option>
+                                    <option value="Benin">Benin</option>
+                                    <option value="Bhutan">Bhutan</option>
+                                    <option value="Bolivia">Bolivia</option>
+                                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                    <option value="Botswana">Botswana</option>
+                                    <option value="Brazil">Brazil</option>
+                                    <option value="Brunei">Brunei</option>
+                                    <option value="Bulgaria">Bulgaria</option>
+                                    <option value="Burkina Faso">Burkina Faso</option>
+                                    <option value="Burundi">Burundi</option>
+                                    <option value="Cabo Verde">Cabo Verde</option>
+                                    <option value="Cambodia">Cambodia</option>
+                                    <option value="Cameroon">Cameroon</option>
+                                    <option value="Canada">Canada</option>
+                                    <option value="Central African Republic">Central African Republic</option>
+                                    <option value="Chad">Chad</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="China">China</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Comoros">Comoros</option>
+                                    <option value="Congo (Congo-Brazzaville)">Congo (Congo-Brazzaville)</option>
+                                    <option value="Costa Rica">Costa Rica</option>
+                                    <option value="Croatia">Croatia</option>
+                                    <option value="Cuba">Cuba</option>
+                                    <option value="Cyprus">Cyprus</option>
+                                    <option value="Czech Republic">Czech Republic</option>
+                                    <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+                                    <option value="Denmark">Denmark</option>
+                                    <option value="Djibouti">Djibouti</option>
+                                    <option value="Dominica">Dominica</option>
+                                    <option value="Dominican Republic">Dominican Republic</option>
+                                    <option value="Ecuador">Ecuador</option>
+                                    <option value="Egypt">Egypt</option>
+                                    <option value="El Salvador">El Salvador</option>
+                                    <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                    <option value="Eritrea">Eritrea</option>
+                                    <option value="Estonia">Estonia</option>
+                                    <option value="Eswatini">Eswatini</option>
+                                    <option value="Ethiopia">Ethiopia</option>
+                                    <option value="Fiji">Fiji</option>
+                                    <option value="Finland">Finland</option>
+                                    <option value="France">France</option>
+                                    <option value="Gabon">Gabon</option>
+                                    <option value="Gambia">Gambia</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Ghana">Ghana</option>
+                                    <option value="Greece">Greece</option>
+                                    <option value="Grenada">Grenada</option>
+                                    <option value="Guatemala">Guatemala</option>
+                                    <option value="Guinea">Guinea</option>
+                                    <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                    <option value="Guyana">Guyana</option>
+                                    <option value="Haiti">Haiti</option>
+                                    <option value="Honduras">Honduras</option>
+                                    <option value="Hungary">Hungary</option>
+                                    <option value="Iceland">Iceland</option>
+                                    <option value="India">India</option>
+                                    <option value="Indonesia">Indonesia</option>
+                                    <option value="Iran">Iran</option>
+                                    <option value="Iraq">Iraq</option>
+                                    <option value="Ireland">Ireland</option>
+                                    <option value="Israel">Israel</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Ivory Coast">Ivory Coast</option>
+                                    <option value="Jamaica">Jamaica</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="Jordan">Jordan</option>
+                                    <option value="Kazakhstan">Kazakhstan</option>
+                                    <option value="Kenya">Kenya</option>
+                                    <option value="Kiribati">Kiribati</option>
+                                    <option value="Kuwait">Kuwait</option>
+                                    <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                    <option value="Laos">Laos</option>
+                                    <option value="Latvia">Latvia</option>
+                                    <option value="Lebanon">Lebanon</option>
+                                    <option value="Lesotho">Lesotho</option>
+                                    <option value="Liberia">Liberia</option>
+                                    <option value="Libya">Libya</option>
+                                    <option value="Liechtenstein">Liechtenstein</option>
+                                    <option value="Lithuania">Lithuania</option>
+                                    <option value="Luxembourg">Luxembourg</option>
+                                    <option value="Madagascar">Madagascar</option>
+                                    <option value="Malawi">Malawi</option>
+                                    <option value="Malaysia">Malaysia</option>
+                                    <option value="Maldives">Maldives</option>
+                                    <option value="Mali">Mali</option>
+                                    <option value="Malta">Malta</option>
+                                    <option value="Marshall Islands">Marshall Islands</option>
+                                    <option value="Mauritania">Mauritania</option>
+                                    <option value="Mauritius">Mauritius</option>
+                                    <option value="Mexico">Mexico</option>
+                                    <option value="Micronesia">Micronesia</option>
+                                    <option value="Moldova">Moldova</option>
+                                    <option value="Monaco">Monaco</option>
+                                    <option value="Mongolia">Mongolia</option>
+                                    <option value="Montenegro">Montenegro</option>
+                                    <option value="Morocco">Morocco</option>
+                                    <option value="Mozambique">Mozambique</option>
+                                    <option value="Myanmar">Myanmar</option>
+                                    <option value="Namibia">Namibia</option>
+                                    <option value="Nauru">Nauru</option>
+                                    <option value="Nepal">Nepal</option>
+                                    <option value="Netherlands">Netherlands</option>
+                                    <option value="New Zealand">New Zealand</option>
+                                    <option value="Nicaragua">Nicaragua</option>
+                                    <option value="Niger">Niger</option>
+                                    <option value="Nigeria">Nigeria</option>
+                                    <option value="North Korea">North Korea</option>
+                                    <option value="North Macedonia">North Macedonia</option>
+                                    <option value="Norway">Norway</option>
+                                    <option value="Oman">Oman</option>
+                                    <option value="Pakistan">Pakistan</option>
+                                    <option value="Palau">Palau</option>
+                                    <option value="Palestine">Palestine</option>
+                                    <option value="Panama">Panama</option>
+                                    <option value="Papua New Guinea">Papua New Guinea</option>
+                                    <option value="Paraguay">Paraguay</option>
+                                    <option value="Peru">Peru</option>
+                                    <option value="Philippines">Philippines</option>
+                                    <option value="Poland">Poland</option>
+                                    <option value="Portugal">Portugal</option>
+                                    <option value="Qatar">Qatar</option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Russia">Russia</option>
+                                    <option value="Rwanda">Rwanda</option>
+                                    <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                    <option value="Saint Lucia">Saint Lucia</option>
+                                    <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                                    <option value="Samoa">Samoa</option>
+                                    <option value="San Marino">San Marino</option>
+                                    <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                    <option value="Saudi Arabia">Saudi Arabia</option>
+                                    <option value="Senegal">Senegal</option>
+                                    <option value="Serbia">Serbia</option>
+                                    <option value="Seychelles">Seychelles</option>
+                                    <option value="Sierra Leone">Sierra Leone</option>
+                                    <option value="Singapore">Singapore</option>
+                                    <option value="Slovakia">Slovakia</option>
+                                    <option value="Slovenia">Slovenia</option>
+                                    <option value="Solomon Islands">Solomon Islands</option>
+                                    <option value="Somalia">Somalia</option>
+                                    <option value="South Africa">South Africa</option>
+                                    <option value="South Korea">South Korea</option>
+                                    <option value="South Sudan">South Sudan</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Sri Lanka">Sri Lanka</option>
+                                    <option value="Sudan">Sudan</option>
+                                    <option value="Suriname">Suriname</option>
+                                    <option value="Sweden">Sweden</option>
+                                    <option value="Switzerland">Switzerland</option>
+                                    <option value="Syria">Syria</option>
+                                    <option value="Taiwan">Taiwan</option>
+                                    <option value="Tajikistan">Tajikistan</option>
+                                    <option value="Tanzania">Tanzania</option>
+                                    <option value="Thailand">Thailand</option>
+                                    <option value="Timor-Leste">Timor-Leste</option>
+                                    <option value="Togo">Togo</option>
+                                    <option value="Tonga">Tonga</option>
+                                    <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                    <option value="Tunisia">Tunisia</option>
+                                    <option value="Turkey">Turkey</option>
+                                    <option value="Turkmenistan">Turkmenistan</option>
+                                    <option value="Tuvalu">Tuvalu</option>
+                                    <option value="Uganda">Uganda</option>
+                                    <option value="Ukraine">Ukraine</option>
+                                    <option value="United Arab Emirates">United Arab Emirates</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="Uruguay">Uruguay</option>
+                                    <option value="Uzbekistan">Uzbekistan</option>
+                                    <option value="Vanuatu">Vanuatu</option>
+                                    <option value="Vatican City">Vatican City</option>
+                                    <option value="Venezuela">Venezuela</option>
+                                    <option value="Vietnam">Vietnam</option>
+                                    <option value="Yemen">Yemen</option>
+                                    <option value="Zambia">Zambia</option>
+                                    <option value="Zimbabwe">Zimbabwe</option>
+                                </select>
+                                <span class="field-error"></span>
+                            </div>
+                        </fieldset>
+
+                        <!-- Twitter / X Handle -->
+                        <div class="form-group">
+                            <label for="twitter">Twitter / X Handle <span class="required">*</span></label>
+                            <input type="text" id="twitter" name="twitter" placeholder="@handle" required>
+                            <span class="field-error"></span>
+                        </div>
+
+                        <!-- Dietary Restrictions -->
+                        <div class="form-group">
+                            <label for="dietary">Dietary Restrictions</label>
+                            <textarea id="dietary" name="dietary" rows="2" placeholder="e.g., vegetarian, nut allergy, none"></textarea>
+                        </div>
+
+                        <!-- Dues-Paying Member -->
+                        <div class="form-group">
+                            <label>I am an active dues-paying member of CNL <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="duesPaying" value="Yes" required> Yes</label>
+                                <label class="radio-label"><input type="radio" name="duesPaying" value="No"> No</label>
+                            </div>
+                            <span class="field-error"></span>
+                        </div>
+
+                        <!-- Chapter Member -->
+                        <div class="form-group">
+                            <label>I am an active member or Lead of a CNL Chapter <span class="required">*</span></label>
+                            <div class="radio-group">
+                                <label class="radio-label"><input type="radio" name="chapterMember" value="Yes" required id="chapterYes"> Yes</label>
+                                <label class="radio-label"><input type="radio" name="chapterMember" value="No" id="chapterNo"> No</label>
+                            </div>
+                            <span class="field-error"></span>
+                        </div>
+
+                        <!-- Which Chapter (conditional) -->
+                        <div class="form-group" id="whichChapterGroup" style="display: none;">
+                            <label for="whichChapter">If yes, which chapter? <span class="required">*</span></label>
+                            <input type="text" id="whichChapter" name="whichChapter">
+                            <span class="field-error"></span>
+                        </div>
+
+                        <!-- Why Attend -->
+                        <div class="form-group">
+                            <label for="whyAttend">Why would you like to attend the New Liberal Action Summit? <span class="required">*</span></label>
+                            <textarea id="whyAttend" name="whyAttend" rows="5" maxlength="1500" required></textarea>
+                            <span class="field-error"></span>
+                        </div>
+
+                        <!-- How Would You Benefit -->
+                        <div class="form-group">
+                            <label for="howBenefit">How would you benefit from attending the New Liberal Action Summit? <span class="required">*</span></label>
+                            <textarea id="howBenefit" name="howBenefit" rows="5" maxlength="1500" required></textarea>
+                            <span class="field-error"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="submit-btn">Submit Application</button>
+                    </form>
+
+                    <div id="form-success" class="scholarship-form-message scholarship-form-success" style="display: none;">
+                        <h3>Thank you!</h3>
+                        <p>Your application has been received. We'll be in touch via email.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="container">
+            <h2>Ready to Make Liberalism Win?</h2>
+            <p>Join us in Washington, DC this July</p>
+            <a href="register.html" class="btn btn-secondary btn-large">Register for NLAS 2026</a>
+        </div>
+    </section>
 
     <div id="footer-placeholder"></div>
 
@@ -80,5 +406,136 @@
     <script src="config.js"></script>
     <script src="components.js"></script>
     <script src="script.js"></script>
+    <script>
+        const APPS_SCRIPT_URL = 'REPLACE_WITH_DEPLOYMENT_URL';
+
+        // Chapter toggle
+        const chapterYes = document.getElementById('chapterYes');
+        const chapterNo = document.getElementById('chapterNo');
+        const chapterGroup = document.getElementById('whichChapterGroup');
+
+        chapterYes.addEventListener('change', () => {
+            chapterGroup.style.display = 'block';
+        });
+        chapterNo.addEventListener('change', () => {
+            chapterGroup.style.display = 'none';
+            document.getElementById('whichChapter').value = '';
+        });
+
+        // Form submission
+        const form = document.getElementById('scholarship-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const formError = document.getElementById('form-error');
+        const formSuccess = document.getElementById('form-success');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            formError.style.display = 'none';
+
+            // Clear previous errors
+            form.querySelectorAll('.field-error').forEach(el => el.textContent = '');
+
+            // Validate
+            let valid = true;
+
+            function showError(field, message) {
+                const group = field.closest('.form-group');
+                if (group) {
+                    const errorEl = group.querySelector('.field-error');
+                    if (errorEl) errorEl.textContent = message;
+                }
+                valid = false;
+            }
+
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const dob = document.getElementById('dob');
+            const streetAddress = document.getElementById('streetAddress');
+            const city = document.getElementById('city');
+            const state = document.getElementById('state');
+            const zip = document.getElementById('zip');
+            const country = document.getElementById('country');
+            const twitter = document.getElementById('twitter');
+            const duesPaying = document.querySelector('input[name="duesPaying"]:checked');
+            const chapterMember = document.querySelector('input[name="chapterMember"]:checked');
+            const whichChapter = document.getElementById('whichChapter');
+            const whyAttend = document.getElementById('whyAttend');
+            const howBenefit = document.getElementById('howBenefit');
+
+            if (!name.value.trim()) showError(name, 'Name is required');
+            if (!email.value.trim()) showError(email, 'Email is required');
+            else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) showError(email, 'Please enter a valid email');
+            if (!dob.value) showError(dob, 'Date of birth is required');
+            if (!streetAddress.value.trim()) showError(streetAddress, 'Street address is required');
+            if (!city.value.trim()) showError(city, 'City is required');
+            if (!state.value.trim()) showError(state, 'State / Province is required');
+            if (!zip.value.trim()) showError(zip, 'Zip / Postal code is required');
+            if (!country.value) showError(country, 'Country is required');
+            if (!twitter.value.trim()) showError(twitter, 'Twitter handle is required');
+
+            if (!duesPaying) {
+                const duesGroup = document.querySelector('input[name="duesPaying"]').closest('.form-group');
+                const errorEl = duesGroup.querySelector('.field-error');
+                if (errorEl) errorEl.textContent = 'Please select an option';
+                valid = false;
+            }
+
+            if (!chapterMember) {
+                const chapterMemberGroup = document.querySelector('input[name="chapterMember"]').closest('.form-group');
+                const errorEl = chapterMemberGroup.querySelector('.field-error');
+                if (errorEl) errorEl.textContent = 'Please select an option';
+                valid = false;
+            }
+
+            if (chapterMember && chapterMember.value === 'Yes' && !whichChapter.value.trim()) {
+                showError(whichChapter, 'Please specify your chapter');
+            }
+
+            if (!whyAttend.value.trim()) showError(whyAttend, 'This field is required');
+            if (!howBenefit.value.trim()) showError(howBenefit, 'This field is required');
+
+            if (!valid) return;
+
+            // Disable submit
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const data = {
+                name: name.value.trim(),
+                email: email.value.trim(),
+                dob: dob.value,
+                streetAddress: streetAddress.value.trim(),
+                addressLine2: document.getElementById('addressLine2').value.trim(),
+                city: city.value.trim(),
+                state: state.value.trim(),
+                zip: zip.value.trim(),
+                country: country.value,
+                twitter: twitter.value.trim(),
+                dietary: document.getElementById('dietary').value.trim(),
+                duesPaying: duesPaying.value,
+                chapterMember: chapterMember.value,
+                whichChapter: whichChapter.value.trim(),
+                whyAttend: whyAttend.value.trim(),
+                howBenefit: howBenefit.value.trim()
+            };
+
+            try {
+                await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                form.style.display = 'none';
+                formSuccess.style.display = 'block';
+            } catch (err) {
+                formError.textContent = 'Something went wrong. Please try again.';
+                formError.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Application';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -242,6 +242,17 @@ function initTornPaper() {
     // Make available globally if needed
     window.tornPaperEffect = tornPaper;
 
+    // Watch for textarea resizes that change the paper container size
+    document.querySelectorAll('.paper-torn textarea').forEach(textarea => {
+        const paperEl = textarea.closest('.paper-torn');
+        if (!paperEl) return;
+
+        const ro = new ResizeObserver(() => {
+            tornPaper.applyTo(paperEl);
+        });
+        ro.observe(paperEl);
+    });
+
     // Watch for async content (e.g. EveryAction forms) that changes element size
     document.querySelectorAll('.paper-torn .ngp-form, .paper-torn .cnl-ea-form-wrap').forEach(formEl => {
         const paperEl = formEl.closest('.paper-torn');

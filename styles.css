@@ -1732,6 +1732,152 @@ section {
 }
 
 /* ============================================
+   Scholarship Application Form
+   ============================================ */
+.scholarship-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.scholarship-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.scholarship-form label {
+    font-family: var(--font-typewriter);
+    color: var(--cnl-blue);
+    font-size: 0.95rem;
+}
+
+.scholarship-form .required {
+    color: var(--cnl-red);
+}
+
+.scholarship-form input[type="text"],
+.scholarship-form input[type="email"],
+.scholarship-form input[type="date"],
+.scholarship-form select {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--cnl-blue);
+    border: none;
+    border-bottom: 1.5px solid rgba(44, 54, 89, 0.3);
+    background: transparent;
+    padding: 0.5rem 0.25rem;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+
+.scholarship-form input[type="text"]:focus,
+.scholarship-form input[type="email"]:focus,
+.scholarship-form input[type="date"]:focus,
+.scholarship-form select:focus {
+    border-bottom-color: var(--cnl-red);
+    outline: none;
+}
+
+.scholarship-form textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--cnl-blue);
+    border: 1.5px dashed rgba(44, 54, 89, 0.2);
+    background: transparent;
+    padding: 0.5rem;
+    width: 100%;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+.scholarship-form textarea:focus {
+    border-color: var(--cnl-red);
+    outline: none;
+}
+
+.scholarship-form .form-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.scholarship-form .form-fieldset legend {
+    font-family: var(--font-typewriter);
+    color: var(--cnl-blue);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px dashed rgba(44, 54, 89, 0.2);
+}
+
+.scholarship-form .radio-group {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+.scholarship-form .radio-label {
+    font-family: var(--font-typewriter);
+    color: var(--cnl-blue);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+}
+
+.scholarship-form .field-error {
+    color: var(--cnl-red);
+    font-size: 0.8rem;
+    min-height: 0;
+}
+
+.scholarship-form .btn {
+    display: block;
+    width: fit-content;
+    margin: 1rem auto 0;
+}
+
+.scholarship-form .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.scholarship-form-message {
+    text-align: center;
+    padding: 1.25rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.scholarship-form-error {
+    background: rgba(159, 60, 57, 0.1);
+    color: var(--cnl-red);
+    border: 1px solid rgba(159, 60, 57, 0.3);
+}
+
+.scholarship-form-success {
+    color: var(--cnl-blue);
+    padding: 2rem;
+}
+
+.scholarship-form-success h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--cnl-red);
+    margin-bottom: 0.75rem;
+}
+
+.scholarship-form-success p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+}
+
+/* ============================================
    Sponsor Page Styles
    ============================================ */
 .sponsors-section {
