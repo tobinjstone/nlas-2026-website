@@ -283,7 +283,9 @@ function initTornPaper() {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = TornPaperEffect;
 } else {
-    document.addEventListener('DOMContentLoaded', initTornPaper);
+    document.addEventListener('DOMContentLoaded', () => {
+        document.fonts.ready.then(initTornPaper);
+    });
     // Re-apply after dynamically injected components (e.g. nav) are ready
     document.addEventListener('componentsLoaded', () => {
         if (window.tornPaperEffect) {
