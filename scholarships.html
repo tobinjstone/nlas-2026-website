@@ -47,7 +47,7 @@
                         <h2 class="letter-heading">Scholarship Applications</h2>
                         <div class="letter-divider"></div>
                         <p>Every year, the Center for New Liberalism offers travel and accommodation scholarships for our New Liberal Action Summit. Our goal is to ensure that financial constraints don't prevent our chapter leads and other passionate liberals from joining us in Washington, DC.</p>
-                        <p>The final application deadline is June 1st, 2026. Notifications will begin on a rolling basis in May. All applicants will be notified of their status via email.</p>
+                        <p>The final application deadline is May 1st, 2026. Notifications will begin on a rolling basis in May. All applicants will be notified of their status via email.</p>
                     </div>
                 </div>
             </div>
@@ -327,7 +327,7 @@
 
                         <!-- Twitter / X Handle -->
                         <div class="form-group">
-                            <label for="twitter">Twitter / X Handle <span class="required">*</span></label>
+                            <label for="twitter">Twitter / X Handle</label>
                             <input type="text" id="twitter" name="twitter" placeholder="@handle">
                             <span class="field-error"></span>
                         </div>
@@ -471,7 +471,6 @@
             if (!state.value.trim()) showError(state, 'State / Province is required');
             if (!zip.value.trim()) showError(zip, 'Zip / Postal code is required');
             if (!country.value) showError(country, 'Country is required');
-            if (!twitter.value.trim()) showError(twitter, 'Twitter handle is required');
 
             if (!duesPaying) {
                 const duesGroup = document.querySelector('input[name="duesPaying"]').closest('.form-group');
