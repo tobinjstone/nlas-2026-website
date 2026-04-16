@@ -173,6 +173,7 @@ function initCountdown() {
         elHours.textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
         elMinutes.textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         elSeconds.textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+        
     }
 
     update();
