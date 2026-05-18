@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibCon 2026 Attendee Registration | NLAS 2026</title>
+    <meta name="description" content="Exclusive registration for attendees of the Unpopulist's LibCon 2026 conference. Enjoy discounted rates and exclusive benefits at NLAS 2026.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="canonical" href="https://nlas.cnliberalism.org/libcon-registration.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nlas.cnliberalism.org/libcon-registration.html">
+    <meta property="og:title" content="LibCon 2026 Attendee Registration | NLAS 2026">
+    <meta property="og:description" content="Exclusive registration for attendees of the Unpopulist's LibCon 2026 conference. Enjoy discounted rates and exclusive benefits at NLAS 2026.">
+    <meta property="og:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
+    <meta property="og:site_name" content="NLAS 2026">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@cnliberalism">
+    <meta name="twitter:title" content="LibCon 2026 Attendee Registration | NLAS 2026">
+    <meta name="twitter:description" content="Exclusive registration for attendees of the Unpopulist's LibCon 2026 conference. Enjoy discounted rates and exclusive benefits at NLAS 2026.">
+    <meta name="twitter:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/berlin-sans-fb-demi" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-placeholder" data-current-page="register"></div>
+
+    <!-- Password Gate -->
+    <div id="password-gate" class="password-gate">
+        <div class="password-gate-box">
+            <h2>LibCon 2026 Attendees Only</h2>
+            <p>Enter the attendee password to access registration.</p>
+            <form id="password-form" onsubmit="return checkPassword(event)">
+                <input type="password" id="gate-password" placeholder="Enter password" autocomplete="off">
+                <button type="submit">Enter</button>
+            </form>
+            <p id="gate-error" style="color: var(--cnl-red); margin-top: 0.5rem; display: none;">Incorrect password. Please try again.</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">Not a LibCon attendee? <a href="register.html" style="color: var(--cnl-red);">Register here</a> instead.</p>
+        </div>
+    </div>
+
+    <main class="page-content" id="registration-content" style="display: none;">
+        <section class="register-section">
+            <h1 class="page-title section-title-light">LibCon 2026 Attendee Registration</h1>
+            <p class="page-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">This registration page is exclusively for attendees of the Unpopulist's LibCon 2026 conference. <strong>Please do not share this link with anyone.</strong> If someone you know is interested in attending NLAS 2026, please direct them to the <a href="register.html" style="color: white;">general registration page</a>.</p>
+
+            <!-- Registration Form Area -->
+            <div class="paper-sheet paper-torn" style="--rotation: 0.3deg;">
+                <div class="paper-content">
+                    <div class="cnl-ea-form-wrap">
+                    <link rel='preload' href='https://static.everyaction.com/ea-actiontag/at.js' as='script' crossorigin='anonymous'>
+                    <script type='text/javascript' src='https://static.everyaction.com/ea-actiontag/at.js' crossorigin='anonymous'></script>
+
+                        <div class="ngp-form"
+                            data-form-url="https://secure.ngpvan.com/v1/Forms/DJGQAKzvGkGoj7CLTKA2Gw2"
+                            data-fastaction-endpoint="https://fastaction.ngpvan.com"
+                            data-inline-errors="true"
+                            data-fastaction-nologin="true"
+                            data-databag-endpoint="https://profile.ngpvan.com"
+                            data-databag="everybody"
+                            data-mobile-autofocus="false">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Simple hash to avoid storing password in plain text in source
+        function simpleHash(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash |= 0;
+            }
+            return hash;
+        }
+
+        const PASS_HASH = simpleHash('DEFENDLIBERALISM');
+
+        function checkPassword(e) {
+            e.preventDefault();
+            const input = document.getElementById('gate-password').value.toUpperCase().trim();
+            if (simpleHash(input) === PASS_HASH) {
+                document.getElementById('password-gate').style.display = 'none';
+                document.getElementById('registration-content').style.display = '';
+                sessionStorage.setItem('libcon-auth', 'true');
+            } else {
+                document.getElementById('gate-error').style.display = 'block';
+                document.getElementById('gate-password').value = '';
+                document.getElementById('gate-password').focus();
+            }
+            return false;
+        }
+
+        // Persist access for the browser session
+        if (sessionStorage.getItem('libcon-auth') === 'true') {
+            document.getElementById('password-gate').style.display = 'none';
+            document.getElementById('registration-content').style.display = '';
+        }
+    </script>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="torn-paper.js"></script>
+    <script src="config.js"></script>
+    <script src="components.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
