@@ -1,15 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register | NLAS 2026</title>
     <meta name="description" content="Register for the New Liberal Action Summit 2026 in Washington, DC. July 15-17, 2026.">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" href="assets/globe%20logo.png" />
     <link rel="canonical" href="https://nlas.cnliberalism.org/register.html">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nlas.cnliberalism.org/register.html">
@@ -22,27 +18,32 @@
     <meta name="twitter:title" content="Register | NLAS 2026">
     <meta name="twitter:description" content="Register for the New Liberal Action Summit 2026 in Washington, DC. July 15-17, 2026.">
     <meta name="twitter:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
+    <link rel="stylesheet" href="https://use.typekit.net/atj6iwh.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/berlin-sans-fb-demi" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="header-placeholder" data-current-page="register"></div>
 
+    <header class="page-hero page-hero-sky">
+        <div class="page-hero-content">
+            <div class="eyebrow eyebrow-amber">&mdash; Secure Your Spot &mdash;</div>
+            <h1 class="page-title">Register for NLAS 2026</h1>
+        </div>
+    </header>
+
     <main class="page-content">
         <section class="register-section">
-            <h1 class="page-title section-title-light">Register for NLAS 2026</h1>
-            <p class="page-subtitle">Secure your spot at this year's summit</p>
 
             <!-- Ticket Options -->
             <div class="ticket-grid">
                 
-                <div class="ticket-card paper-torn" style="--rotation: -0.5deg;">
+                <div class="ticket-card ticket-card--student">
                     <div class="ticket-header">
                         <span class="ticket-type">Student</span>
-                        <span class="ticket-price">$20</span>
+                        <span class="ticket-price">$10</span>
                     </div>
                     <div class="ticket-details">
                         <p class="ticket-deadline">Valid student email required</p>
@@ -54,15 +55,15 @@
                         </ul>
                     </div>
                 </div>
-                <div class="ticket-card paper-torn" style="--rotation: 0.8deg;">
+                <div class="ticket-card ticket-card--general">
                     <div class="ticket-header">
                         <span class="ticket-type">General Admission</span>
-                        <span class="ticket-price">$50</span>
+                        <span class="ticket-price">$25</span>
                     </div>
                     <div class="ticket-details">
                         <p class="ticket-deadline">Standard pricing</p>
                         <ul class="ticket-includes">
-                            <li>Full main-day accesss</li>
+                            <li>Full main-day access</li>
                             <li>Welcome reception</li>
                             <li>Meals included</li>
                             <li>Conference materials</li>
@@ -72,7 +73,7 @@
                 </div>
 
                 
-                <div class="ticket-card paper-torn" style="--rotation: -1deg;">
+                <div class="ticket-card ticket-card--member">
                     <div class="ticket-header">
                         <span class="ticket-type">Members</span>
                         <span class="ticket-price">FREE</span>
@@ -93,22 +94,20 @@
             </div>
 
             <!-- Registration Form Area -->
-            <div class="paper-sheet paper-torn" style="--rotation: 0.3deg;">
-                <div class="paper-content">
-                    <h2 class="section-title">Registration Form</h2>
-                    <div class="cnl-ea-form-wrap">
+            <div class="register-form-block">
+                <h2 class="register-form-title">Registration Form</h2>
+                <div class="cnl-ea-form-wrap">
                     <link rel='preload' href='https://static.everyaction.com/ea-actiontag/at.js' as='script' crossorigin='anonymous'>
                     <script type='text/javascript' src='https://static.everyaction.com/ea-actiontag/at.js' crossorigin='anonymous'></script>
 
-                        <div class="ngp-form"
-                            data-form-url="https://secure.ngpvan.com/v1/Forms/pHz3KDg0UES6iUerP71EVA2"
-                            data-fastaction-endpoint="https://fastaction.ngpvan.com"
-                            data-inline-errors="true"
-                            data-fastaction-nologin="true"
-                            data-databag-endpoint="https://profile.ngpvan.com"
-                            data-databag="everybody"
-                            data-mobile-autofocus="false">
-                        </div>
+                    <div class="ngp-form"
+                        data-form-url="https://secure.ngpvan.com/v1/Forms/pHz3KDg0UES6iUerP71EVA2"
+                        data-fastaction-endpoint="https://fastaction.ngpvan.com"
+                        data-inline-errors="true"
+                        data-fastaction-nologin="true"
+                        data-databag-endpoint="https://profile.ngpvan.com"
+                        data-databag="everybody"
+                        data-mobile-autofocus="false">
                     </div>
                 </div>
             </div>
@@ -120,7 +119,6 @@
 
     <div id="footer-placeholder"></div>
 
-    <script src="torn-paper.js"></script>
     <script src="config.js"></script>
     <script src="components.js"></script>
     <script src="script.js"></script>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,11 +6,7 @@
     <title>New Liberal Action Summit 2026 | Center for New Liberalism</title>
     <meta name="description" content="Join the next generation of center-left leaders at NLAS 2026 in Washington, DC. July 15-17, 2026.">
     <meta name="google-site-verification" content="google4a9acad7a3431472">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" href="assets/globe%20logo.png" />
     <link rel="canonical" href="https://nlas.cnliberalism.org/">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nlas.cnliberalism.org/">
@@ -23,199 +19,242 @@
     <meta name="twitter:title" content="New Liberal Action Summit 2026 | Center for New Liberalism">
     <meta name="twitter:description" content="Join the next generation of center-left leaders at NLAS 2026 in Washington, DC. July 15-17, 2026.">
     <meta name="twitter:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
+    <link rel="stylesheet" href="https://use.typekit.net/atj6iwh.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Special+Elite&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/berlin-sans-fb-demi" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <div id="header-placeholder" data-current-page="home"></div>
 
     <!-- Hero Section -->
     <header class="hero">
-        <div class="hero-particles"></div>
-        <div class="hero-content">
-            <img src="assets/logo.webp" alt="New Liberal Action Summit 2026" class="logo">
-            <p class="event-details">Washington, DC &nbsp;|&nbsp; July 15-17, 2026</p>
-            <div class="countdown" id="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="countdown-days">--</span>
-                    <span class="countdown-label">Days</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="countdown-hours">--</span>
-                    <span class="countdown-label">Hours</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="countdown-minutes">--</span>
-                    <span class="countdown-label">Minutes</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="countdown-seconds">--</span>
-                    <span class="countdown-label">Seconds</span>
-                </div>
+        <div class="hero-inner">
+            <div class="hero-logo-col">
+                <img src="assets/nlas-logo.png" alt="New Liberal Action Summit" class="hero-logo">
             </div>
-            <a href="register.html" class="btn btn-secondary">Register Now</a>
+            <div class="hero-cta-col">
+                <div class="hero-dateline">
+                    <span class="hero-dateline-city">Washington, DC</span>
+                    <span class="hero-dateline-date">July 15&ndash;17, 2026</span>
+                </div>
+
+                <!-- Retro ticket-stub countdown -->
+                <div class="countdown" id="countdown" role="timer" aria-label="Countdown to NLAS 2026">
+                    <div class="countdown-flap" style="--flap-color:#59abda;--flap-rotation:-1.5deg;">
+                        <div class="flap-header">Days</div>
+                        <div class="flap-digits" id="countdown-days">--</div>
+                    </div>
+                    <div class="countdown-flap" style="--flap-color:#e5a2c4;--flap-rotation:1deg;">
+                        <div class="flap-header">Hours</div>
+                        <div class="flap-digits" id="countdown-hours">--</div>
+                    </div>
+                    <div class="countdown-flap" style="--flap-color:#f1ea7d;--flap-rotation:-0.8deg;">
+                        <div class="flap-header">Min</div>
+                        <div class="flap-digits" id="countdown-minutes">--</div>
+                    </div>
+                    <div class="countdown-flap" style="--flap-color:#01b27c;--flap-rotation:1.5deg;">
+                        <div class="flap-header">Sec</div>
+                        <div class="flap-digits" id="countdown-seconds">--</div>
+                    </div>
+                </div>
+
+                <a href="register.html" class="btn btn-primary btn-large hero-register-btn">Get Your Tickets &rarr;</a>
+            </div>
         </div>
     </header>
 
+    <!-- Marquee Divider -->
+    <div class="marquee-divider" aria-hidden="true">
+        <div class="marquee-track">
+            &mdash; JULY 15&ndash;17 &mdash; WASHINGTON DC &mdash; JULY 15&ndash;17 &mdash; WASHINGTON DC &mdash;
+            JULY 15&ndash;17 &mdash; WASHINGTON DC &mdash; JULY 15&ndash;17 &mdash; WASHINGTON DC &mdash;
+            JULY 15&ndash;17 &mdash; WASHINGTON DC &mdash; JULY 15&ndash;17 &mdash; WASHINGTON DC &mdash;
+            JULY 15&ndash;17 &mdash; WASHINGTON DC &mdash; JULY 15&ndash;17 &mdash; WASHINGTON DC &mdash;
+        </div>
+    </div>
+
     <!-- About Section -->
     <section id="about" class="about-section">
-        <div class="paper-sheet paper-torn letter-sheet" style="--rotation: -0.5deg;">
-            <div class="letter-content">
-                <div class="about-text">
-                    <p>We're thrilled to announce our fifth annual New Liberal Action Summit, taking place <strong>July 15-17, 2026</strong> in Washington, DC. </p>
-                    <p>Liberal values won't defend themselves. At a moment when democratic principles in America and around the world face their darkest moment in nearly a century, it's more important than ever to build a coalition of young, center-left leaders ready to go on the offense for liberalism. We're convening NLAS 2026 to explore fresh new policy ideas that can win elections, sharpen our strategy ahead of the 2026 midterms, and continue to build a movement that fights for liberalism.</p>
-                    <p>Whether you've been in this fight for years, or you are just getting started, there's a place for everyone at NLAS. Come ready to learn, meet liberals from around the world, and leave ready to win.</p>
-                    <p>We can't wait to see you in July</p>
-                    <p class="signature">– The Center for New Liberalism Team</p>
-                </div>
-                
+        <div class="about-inner">
+            <div class="eyebrow eyebrow-magenta">&mdash; What is NLAS? &mdash;</div>
+            <h2>The center-left's annual summit for action</h2>
+            <div class="about-text">
+                <p>We're thrilled to announce our fifth annual New Liberal Action Summit, taking place <strong>July 15-17, 2026</strong> in Washington, DC.</p>
+                <p>Liberal values won't defend themselves. At a moment when democratic principles in America and around the world face their darkest moment in nearly a century, it's more important than ever to build a coalition of young, center-left leaders ready to go on the offense for liberalism. We're convening NLAS 2026 to explore fresh new policy ideas that can win elections, sharpen our strategy ahead of the 2026 midterms, and continue to build a movement that fights for liberalism.</p>
+                <p>Whether you've been in this fight for years, or you are just getting started, there's a place for everyone at NLAS. Come ready to learn, meet liberals from around the world, and leave ready to win.</p>
+                <p class="signature">&ndash; The Center for New Liberalism Team</p>
             </div>
         </div>
     </section>
+
     <!-- Email Interest Section -->
     <section id="email-interest" class="email-interest-section">
-        <div class="envelope" style="--rotation: -0.5deg;">
-            <div class="envelope-flap"></div>
-            <img src="assets/logo-blue.png" alt="NLAS" class="envelope-logo">
-            <div class="envelope-body">
-                <h2 class="envelope-title">Stay in the Loop</h2>
-                <p class="envelope-subtitle">Sign up to receive updates about NLAS 2026</p>
-                <div class="cnl-ea-form-wrap">
-                    <link rel='preload' href='https://static.everyaction.com/ea-actiontag/at.js' as='script' crossorigin='anonymous'>
-                    <script type='text/javascript' src='https://static.everyaction.com/ea-actiontag/at.js' crossorigin='anonymous'></script>
-
-                    <div class="ngp-form"
-                        data-form-url="https://secure.ngpvan.com/v1/Forms/AhujUKTSqEC5zGHVP1_LFw2"
-                        data-fastaction-endpoint="https://fastaction.ngpvan.com"
-                        data-inline-errors="true"
-                        data-fastaction-nologin="true"
-                        data-databag-endpoint="https://profile.ngpvan.com"
-                        data-databag="everybody"
-                        data-mobile-autofocus="false">
-                    </div>
+        <div class="email-card">
+            <h2 class="email-card-title">Stay in the Loop</h2>
+            <p class="email-card-subtitle">Sign up to receive updates about NLAS 2026</p>
+            <div class="cnl-ea-form-wrap">
+                <link rel='preload' href='https://static.everyaction.com/ea-actiontag/at.js' as='script' crossorigin='anonymous'>
+                <script type='text/javascript' src='https://static.everyaction.com/ea-actiontag/at.js' crossorigin='anonymous'></script>
+                <div class="ngp-form"
+                    data-form-url="https://secure.ngpvan.com/v1/Forms/AhujUKTSqEC5zGHVP1_LFw2"
+                    data-fastaction-endpoint="https://fastaction.ngpvan.com"
+                    data-inline-errors="true"
+                    data-fastaction-nologin="true"
+                    data-databag-endpoint="https://profile.ngpvan.com"
+                    data-databag="everybody"
+                    data-mobile-autofocus="false">
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Featured Speakers Section -->
     <section id="featured-speakers" class="featured-speakers-section">
-        <h2 class="section-title section-title-light">Featured Speakers</h2>
-        <p class="section-subtitle">More speakers to be announced</p>
-        
+        <div class="eyebrow eyebrow-sky">&mdash; Featured Speakers &mdash;</div>
+
+        <p style="color: var(--nlas-sky); opacity: 0.7; margin-bottom: 0; font-size: 0.95rem;">More speakers to be announced</p>
+
         <div class="featured-speakers-grid">
-            <div class="speaker-clipping" style="--rotation: 1.5deg;">
-                <div class="clipping-photo">
-                    <img src="assets/speakers/fukuyama.jpg" alt="Francis Fukuyama" loading="lazy" decoding="async">
+            <div class="speaker-card" style="--card-color: #59abda; --rotation: -1.5deg;">
+                <div class="card-header">
+                    <span class="card-number">NO. 01</span>
                 </div>
-                <div class="clipping-caption">
+                <div class="card-photo">
+                    <img src="assets/speakers/fukuyama.png" alt="Francis Fukuyama" loading="lazy" decoding="async">
+                </div>
+                <div class="card-caption">
                     <h3>Francis Fukuyama</h3>
-                    <p>Political Scientist & Author</p>
+                    <p>Political Scientist &amp; Author</p>
                 </div>
             </div>
-            
-            <div class="speaker-clipping" style="--rotation: -1deg;">
-                <div class="clipping-photo">
-                    <img src="assets/speakers/auchincloss.jpg" alt="Rep. Jake Auchincloss" loading="lazy" decoding="async">
+
+            <div class="speaker-card" style="--card-color: #e5a2c4; --rotation: 1deg;">
+                <div class="card-header">
+                    <span class="card-number">NO. 02</span>
                 </div>
-                <div class="clipping-caption">
-                    <h3>Rep. Jake Auchincloss</h3>
-                    <p>U.S. Representative, MA-04</p>
+                <div class="card-photo">
+                    <img src="assets/speakers/Beyer.png" alt="Rep. Don Beyer" loading="lazy" decoding="async">
                 </div>
-            </div>
-            
-            <div class="speaker-clipping" style="--rotation: 0.8deg;">
-                <div class="clipping-photo">
-                    <img src="assets/speakers/bennet.jpg" alt="Sen. Michael Bennet" loading="lazy" decoding="async">
-                </div>
-                <div class="clipping-caption">
-                    <h3>Sen. Michael Bennet</h3>
-                    <p>U.S. Senator, Colorado</p>
+                <div class="card-caption">
+                    <h3>Rep. Don Beyer</h3>
+                    <p>U.S. Representative, VA-08</p>
                 </div>
             </div>
-            
-            <div class="speaker-clipping speaker-placeholder" style="--rotation: -1.2deg;">
-                <div class="clipping-photo placeholder-photo">
+
+            <div class="speaker-card" style="--card-color: #f1ea7d; --rotation: -0.8deg;">
+                <div class="card-header">
+                    <span class="card-number">NO. 03</span>
+                </div>
+                <div class="card-photo">
+                    <img src="assets/speakers/Landsman.png" alt="Rep. Greg Landsman" loading="lazy" decoding="async">
+                </div>
+                <div class="card-caption">
+                    <h3>Rep. Greg Landsman</h3>
+                    <p>U.S. Representative, OH-01</p>
+                </div>
+            </div>
+
+            <div class="speaker-card" style="--card-color: #01b27c; --rotation: 1.5deg;">
+                <div class="card-header">
+                    <span class="card-number">NO. 04</span>
+                </div>
+                <div class="card-photo-placeholder">
                     <span>+</span>
                 </div>
-                <div class="clipping-caption">
+                <div class="card-caption">
                     <h3>More Coming Soon</h3>
-                    <p>Stay tuned for announcements</p>
+                    <p>Stay tuned</p>
                 </div>
             </div>
         </div>
-        
-        <a href="speakers.html" class="btn btn-secondary">View All Speakers</a>
+
+        <a href="speakers.html" class="btn btn-secondary">See All Speakers &rarr;</a>
     </section>
 
     <!-- Schedule Overview Section -->
-    <section id="schedule-overview" class="logistics-section">
-        <div class="section-container">
-            <h2 class="section-title section-title-light">Schedule</h2>
-            <p class="section-subtitle">Three days of policy, training, and action</p>
+    <section id="schedule-overview" class="schedule-section">
+        <div class="eyebrow eyebrow-amber">&mdash; The Itinerary &mdash;</div>
+        <h2>Three days, one route</h2>
 
-            <div class="schedule-overview-cards">
-                <div class="info-card paper-torn" style="--rotation: -0.8deg;">
-                    <div class="day-header">
-                        <span class="day-label">Day 1</span>
-                        <span class="day-date">July 15</span>
-                    </div>
-                    <p>Welcome Reception</p>
-                </div>
-                <div class="info-card paper-torn" style="--rotation: 0.5deg;">
-                    <div class="day-header">
-                        <span class="day-label">Day 2</span>
-                        <span class="day-date">July 16</span>
-                    </div>
-                    <p>Main Conference Sessions & Evening Reception</p>
-                </div>
-                <div class="info-card paper-torn" style="--rotation: -0.4deg;">
-                    <div class="day-header">
-                        <span class="day-label">Day 3</span>
-                        <span class="day-date">July 17</span>
-                    </div>
-                    <p>Invite-Only Member's Retreat</p>
-                </div>
+        <div class="departure-board" role="table" aria-label="Conference schedule">
+            <div class="board-header" role="row">
+                <span role="columnheader">Date</span>
+                <span role="columnheader">Destination</span>
+                <span role="columnheader">Platform</span>
+                <span role="columnheader"></span>
             </div>
 
-            <a href="schedule.html" class="btn btn-secondary" style="display: block; width: fit-content; margin: 2rem auto 0;">Full Schedule</a>
+            <div class="board-row" role="row">
+                <div class="board-date" role="cell">07&middot;15</div>
+                <div class="board-info" role="cell">
+                    <div class="board-title">Welcome Reception</div>
+                    <div class="board-subtitle">Day One &middot; Opening Night</div>
+                </div>
+                <div class="board-platform" role="cell">&#9658; 01</div>
+                <div class="board-arrow" role="cell">&#8594;</div>
+            </div>
+
+            <div class="board-row" role="row">
+                <div class="board-date" role="cell">07&middot;16</div>
+                <div class="board-info" role="cell">
+                    <div class="board-title">Main Conference &amp; Evening Reception</div>
+                    <div class="board-subtitle">Day Two &middot; Full Program</div>
+                </div>
+                <div class="board-platform" role="cell">&#9658; 02</div>
+                <div class="board-arrow" role="cell">&#8594;</div>
+            </div>
+
+            <div class="board-row" role="row">
+                <div class="board-date" role="cell">07&middot;17</div>
+                <div class="board-info" role="cell">
+                    <div class="board-title">Invite-Only Member's Retreat</div>
+                    <div class="board-subtitle">Day Three &middot; Closing Day</div>
+                </div>
+                <div class="board-platform" role="cell">&#9658; 03</div>
+                <div class="board-arrow" role="cell">&#8594;</div>
+            </div>
+
+            <div class="board-footer">
+                <span>&#8857; On Schedule</span>
+                <span>Updated 06&middot;04&middot;2026</span>
+            </div>
         </div>
+
+        <a href="schedule.html" class="btn btn-cream">Full Schedule &rarr;</a>
     </section>
 
     <!-- Partners Section -->
-    <section id="partners" class="logistics-section">
-        <div class="section-container">
-            <h2 class="section-title section-title-light">Our Partners</h2>
-
-            <div class="partners-grid-home">
-                <div class="partner-logo-card paper-torn" style="--rotation: -0.6deg;">Partner Logo</div>
-                <div class="partner-logo-card paper-torn" style="--rotation: 0.8deg;">Partner Logo</div>
-                <div class="partner-logo-card paper-torn" style="--rotation: -0.3deg;">Partner Logo</div>
-                <div class="partner-logo-card paper-torn" style="--rotation: 0.5deg;">Partner Logo</div>
-                <div class="partner-logo-card paper-torn" style="--rotation: -0.7deg;">Partner Logo</div>
-                <div class="partner-logo-card paper-torn" style="--rotation: 0.4deg;">Partner Logo</div>
-            </div>
-
-            <a href="sponsors.html" class="btn btn-secondary" style="display: block; width: fit-content; margin: 2rem auto 0;">Become a Sponsor</a>
+    <section id="partners" class="partners-section-home">
+        <div class="eyebrow eyebrow-teal">&mdash; Our Partners &mdash;</div>
+        <h2>Made possible by</h2>
+        <div class="partners-grid-home">
+            <div class="partner-logo-card">Partner Logo</div>
+            <div class="partner-logo-card">Partner Logo</div>
+            <div class="partner-logo-card">Partner Logo</div>
+            <div class="partner-logo-card">Partner Logo</div>
+            <div class="partner-logo-card">Partner Logo</div>
+            <div class="partner-logo-card">Partner Logo</div>
         </div>
+        <a href="sponsors.html" class="btn btn-secondary">Become a Sponsor &rarr;</a>
     </section>
-
-
 
     <!-- CTA Section -->
     <section id="cta" class="cta-section">
-        <div class="container">
-            <h2>Ready to Make Liberalism Win?</h2>
-            <p>Join us in Washington, DC this July</p>
-            <a href="register.html" class="btn btn-secondary btn-large">Register for NLAS 2026</a>
+<div class="container">
+            <h2>
+                <span class="cta-headline-1">Ready for the</span>
+                <span class="cta-headline-2">Summer of Liberalism?</span>
+            </h2>
+            <p>Join us in Washington, DC this July.</p>
+            <a href="register.html" class="btn btn-cream btn-large">Get Your Tickets &rarr;</a>
         </div>
     </section>
 
     <div id="footer-placeholder"></div>
 
-    <script src="torn-paper.js"></script>
     <script src="config.js"></script>
     <script src="components.js"></script>
     <script src="script.js"></script>
