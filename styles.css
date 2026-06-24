@@ -1100,6 +1100,7 @@ section {
 .card-photo {
     aspect-ratio: 1;
     overflow: hidden;
+    background: var(--card-bg, var(--nlas-cream));
 }
 
 .card-photo img {
@@ -1610,10 +1611,9 @@ section {
 .category-title {
     font-family: var(--font-typewriter);
     font-size: 1.5rem;
-    color: var(--cnl-white);
+    color: var(--nlas-sky);
     text-transform: uppercase; letter-spacing: 0.08em;
     margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
 }
 
 .speakers-grid {

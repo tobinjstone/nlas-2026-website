@@ -21,7 +21,7 @@ var SITE_CONFIG = {
     },
     pages: {
         about: true,
-        speakers: false,
+        speakers: true,
         schedule: false,
         logistics: true,
         faqs: true,
@@ -34,3 +34,5 @@ var SITE_CONFIG = {
         scholarshipApplicationsOpen: true
     }
 };
+
+

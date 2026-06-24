@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     applyConfig();
+    renderSpeakers();
     initNavigation();
     initSmoothScroll();
     initCountdown();
@@ -256,4 +257,47 @@ function initScrollReveal() {
     }, { threshold: 0.2 });
 
     cards.forEach(card => observer.observe(card));
+}
+
+// ============================================
+// Speakers Grid Renderer
+// ============================================
+function renderSpeakers() {
+    const grid = document.getElementById('speakers-grid');
+    if (!grid || typeof SPEAKERS_CONFIG === 'undefined') return;
+
+    // color scheme: [card-color, card-bg]
+    const schemes = [
+        ['#59abda', '#01b27c'],
+        ['#e5a2c4', '#59abda'],
+        ['#f1ea7d', '#59abda'],
+        ['#01b27c', '#e5a2c4'],
+    ];
+    const rotations = [-1.5, 1, -0.8, 1.5, -0.5, 0.8, -1.2, 1, -0.6, 1.2, -1, 0.5];
+
+    const active = SPEAKERS_CONFIG.filter(s => s.enabled);
+
+    active.forEach((speaker, i) => {
+        const [cardColor, cardBg] = schemes[i % schemes.length];
+        const rotation = rotations[i % rotations.length];
+        const num = String(i + 1).padStart(2, '0');
+
+        const card = document.createElement('div');
+        card.className = 'speaker-card';
+        card.style.cssText = `--card-color: ${cardColor}; --card-bg: ${cardBg}; --rotation: ${rotation}deg;`;
+
+        card.innerHTML = `
+            <div class="card-header"><span class="card-number">NO. ${num}</span></div>
+            <div class="card-photo">
+                <img src="assets/speakers/${speaker.photo}.png" alt="${speaker.name}" loading="lazy" decoding="async">
+            </div>
+            <div class="card-caption">
+                <h3>${speaker.name}</h3>
+                <p>${speaker.title}</p>
+            </div>`;
+
+        grid.appendChild(card);
+    });
+
+    initScrollReveal();
 }
