@@ -15,14 +15,14 @@ var SITE_CONFIG = {
         about: true,
         'featured-speakers': true,
         'schedule-overview': true,
-        partners: false,
+        partners: true,
         'email-interest': false,
         cta: true
     },
     pages: {
         about: true,
         speakers: true,
-        schedule: false,
+        schedule: true,
         logistics: true,
         faqs: true,
         scholarships: false,

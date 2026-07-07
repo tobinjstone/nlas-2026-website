@@ -2,7 +2,42 @@
   "permissions": {
     "allow": [
       "Bash(python:*)",
-      "Bash(powershell -NoProfile -Command:*)"
+      "Bash(powershell -NoProfile -Command:*)",
+      "Bash(command -v chromium-cli)",
+      "Read(//usr/local/**)",
+      "Read(//c/Users/tobin/.local/bin/**)",
+      "Read(//c//**)",
+      "Bash(npm -v)",
+      "Bash(node -e \"require\\('playwright'\\); console.log\\('playwright ok'\\)\")",
+      "Bash(npm ls *)",
+      "Bash(timeout 60 npx --yes playwright --version)",
+      "Bash(npx --yes playwright install chromium --with-deps)",
+      "Read(//tmp/**)",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:8791/schedule.html)",
+      "Bash(node test-schedule.js)",
+      "Bash(node crop.js)",
+      "Bash(pkill -f \"http.server 8791\")",
+      "Bash(curl -s \"https://docs.google.com/spreadsheets/d/e/2PACX-1vQz7FzG33Xaz7QGmkmEvC1yZLeHxWcgAm54oG3HuKHg_hl0Nuna8vPhOF8WWYceGbk4FQnKnw22xFKn/pub?gid=612136120&single=true&output=csv\" -o /tmp/sheet.csv -w \"HTTP %{http_code}\\\\n\")",
+      "Bash(curl -sL \"https://docs.google.com/spreadsheets/d/e/2PACX-1vQz7FzG33Xaz7QGmkmEvC1yZLeHxWcgAm54oG3HuKHg_hl0Nuna8vPhOF8WWYceGbk4FQnKnw22xFKn/pub?gid=612136120&single=true&output=csv\" -o /tmp/sheet2.csv -w \"HTTP %{http_code}\\\\n\")",
+      "Bash(find /c/Users/tobin/AppData/Local/Temp -iname \"*paste*\" -newer /c/Windows -mmin -60 2>/dev/null | head -50)",
+      "Read(//c/Users/tobin/AppData/Local/Temp/**)",
+      "Bash(find /c/Users/tobin/AppData/Local/Temp -type f \\\\\\( -iname \"*.png\" -o -iname \"*.jpg\" -o -iname \"*.jpeg\" \\\\\\) -mmin -120 2>/dev/null | head -50)",
+      "Bash(mkdir -p \"/c/Coding Projects/NLAS/assets/partners\")",
+      "Bash(cp \"/c/Coding Projects/NLAS/assets/TheUnpopulist.Logo.256x256.png\" \"/c/Coding Projects/NLAS/assets/partners/unpopulist.png\")",
+      "Bash(cp \"/c/Coding Projects/NLAS/assets/ISMA_Logo_BlackRedGray.png\" \"/c/Coding Projects/NLAS/assets/partners/isma.png\")",
+      "Bash(cp \"/c/Coding Projects/NLAS/assets/Opportunity+DC+logo+transparent.webp\" \"/c/Coding Projects/NLAS/assets/partners/opportunity-dc.webp\")",
+      "Bash(cp \"/c/Coding Projects/NLAS/assets/YIMBY+Action+Sq \\(1\\).webp\" \"/c/Coding Projects/NLAS/assets/partners/yimby-action.webp\")",
+      "Bash(rm \"/c/Coding Projects/NLAS/assets/TheUnpopulist.Logo.256x256.png\" \"/c/Coding Projects/NLAS/assets/ISMA_Logo_BlackRedGray.png\" \"/c/Coding Projects/NLAS/assets/Opportunity+DC+logo+transparent.webp\" \"/c/Coding Projects/NLAS/assets/YIMBY+Action+Sq \\(1\\).webp\" \"/c/Coding Projects/NLAS/assets/ppi logo dark blue.png\" *)",
+      "Bash(file \"/c/Coding Projects/NLAS/assets/partners/\"*)",
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(chromium-cli --help)",
+      "Read(//c/Users/tobin/.claude/**)"
+    ],
+    "additionalDirectories": [
+      "C:\\Coding Projects\\NLAS\\assets"
     ]
   }
 }
