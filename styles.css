@@ -75,7 +75,7 @@ a:not(.btn) {
     position: fixed;
     inset: 0;
     background-color: var(--nlas-cream);
-    background-image: url('assets/background-grid.png');
+    background-image: url('assets/backgrounds/background-grid.png');
     background-size: cover;
     background-position: center;
     z-index: -1;
@@ -548,7 +548,7 @@ a:not(.btn) {
 /* coral/pink — secondary actions */
 .btn-secondary {
     background: var(--nlas-coral);
-    color: var(--nlas-black);
+    color: var(--nlas-cream);
     border-color: var(--nlas-coral);
     box-shadow: 4px 4px 0 var(--nlas-sky);
 }
@@ -590,7 +590,7 @@ a:not(.btn) {
 
 /* teal outline — lightweight action */
 .btn-outline-dark {
-    background: transparent;
+    background: var(--nlas-cream);
     color: var(--nlas-teal);
     border: 2px solid var(--nlas-teal);
     box-shadow: none;
@@ -821,6 +821,13 @@ section {
 
 .hero-register-btn {
     margin-top: 0;
+}
+
+.hero-secondary-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
 }
 
 /* Countdown — Retro ticket stubs */
@@ -1063,6 +1070,7 @@ section {
 }
 
 .speaker-card {
+    display: block;
     background: var(--nlas-cream);
     border: 2.5px solid var(--nlas-black);
     box-shadow: 5px 5px 0 var(--card-color, var(--nlas-sky));
@@ -1072,6 +1080,7 @@ section {
     width: 165px;
     opacity: 0;
     border-radius: 16px 2px 16px 2px;
+    text-decoration: none;
 }
 
 .speaker-card.revealed {
@@ -1094,7 +1103,7 @@ section {
 .card-number {
     font-family: var(--font-display);
     font-size: 9px;
-    color: var(--nlas-cream);
+    color: var(--card-number-color, var(--nlas-cream));
     letter-spacing: 0.2em;
 }
 
@@ -1114,23 +1123,24 @@ section {
 .card-photo-placeholder {
     width: 100%;
     aspect-ratio: 1;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--nlas-cream),
-        var(--nlas-cream) 8px,
-        rgba(1,178,124,0.15) 8px,
-        rgba(1,178,124,0.15) 16px
-    );
+    background: var(--nlas-cream);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
-.card-photo-placeholder span {
-    font-family: var(--font-display);
-    font-size: 2rem;
+.placeholder-globe {
+    width: 62%;
+    height: 62%;
     color: var(--nlas-teal);
-    opacity: 0.4;
+    transform: rotate(-9deg);
+    filter: drop-shadow(3px 3px 0 var(--nlas-black));
+    transition: transform 0.3s ease;
+}
+
+.speaker-card:hover .placeholder-globe {
+    transform: rotate(-9deg) scale(1.06);
 }
 
 .card-caption {
@@ -1352,9 +1362,9 @@ section {
 
 .partners-grid-home {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1.25rem;
-    max-width: 900px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 980px;
     margin: 0 auto 2.5rem;
 }
 
@@ -1366,7 +1376,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.25rem;
+    padding: 1.5rem;
     opacity: 0.85;
     transition: var(--transition-smooth);
 }
@@ -1643,40 +1653,52 @@ section {
 
 /* Day blocks, stacked one after another */
 .schedule-day-block + .schedule-day-block {
-    margin-top: 3.5rem;
-    padding-top: 3rem;
+    margin-top: 2.25rem;
+    padding-top: 1.75rem;
     border-top: 2px dashed rgba(9,82,82,0.25);
 }
 
-.schedule-day-heading {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--nlas-teal);
-    text-align: center;
-    margin-bottom: 1.75rem;
+/* Day heading — ticket-stub badge with day/date and venue folded in */
+.ticket-stub {
+    display: flex; flex-direction: column; align-items: center;
+    width: fit-content; margin: 0 auto 1.25rem;
+    background: var(--nlas-cream);
+    border: 2.5px solid var(--nlas-black);
+    border-radius: 8px;
+    padding: 0.7rem 1.75rem;
+    box-shadow: 5px 5px 0 var(--nlas-teal);
+    position: relative;
+}
+.ticket-stub::before, .ticket-stub::after {
+    content: ''; position: absolute; top: 50%; width: 16px; height: 16px;
+    background: var(--nlas-cream); border: 2.5px solid var(--nlas-black);
+    border-radius: 50%; transform: translateY(-50%);
+}
+.ticket-stub::before { left: -10px; }
+.ticket-stub::after { right: -10px; }
+
+.ticket-stub-main { display: flex; align-items: center; gap: 0.75rem; }
+.ticket-day { font-family: var(--font-display); font-size: 1.4rem; line-height: 1; color: var(--nlas-teal); letter-spacing: 0.02em; }
+.ticket-sep { color: var(--nlas-black); opacity: 0.35; font-family: var(--font-display); line-height: 1; }
+.ticket-date { font-family: var(--font-display); font-size: 1.1rem; line-height: 1; color: var(--nlas-teal-deep); letter-spacing: 0.02em; }
+
+.ticket-stub-divider {
+    width: 100%;
+    border-top: 2px dashed rgba(9,82,82,0.3);
+    margin: 0.55rem 0;
 }
 
-.schedule-day-heading span {
-    color: var(--nlas-teal-deep);
-    opacity: 0.6;
-    font-size: 0.7em;
-}
-
-/* Map-pin link under a day heading */
-.schedule-day-venue {
-    display: block;
-    text-align: center;
+.ticket-stub-location {
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--nlas-teal-deep);
     opacity: 0.8;
     text-decoration: none;
-    margin-top: -1rem;
-    margin-bottom: 1.5rem;
 }
-.schedule-day-venue:hover { opacity: 1; text-decoration: underline; }
+.ticket-stub-location:hover { opacity: 1; text-decoration: underline; }
 
 /* Highly-visible RSVP banner under a day heading */
 .schedule-day-rsvp {
@@ -1684,20 +1706,22 @@ section {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    max-width: 560px;
-    margin: 0 auto 2rem;
+    gap: 0.85rem;
+    width: fit-content;
+    margin: 0 auto 1.5rem;
     background: var(--nlas-sky);
     border: 2.5px solid var(--nlas-teal-deep);
     border-radius: 4px 16px 4px 16px;
-    padding: 1.1rem 1.5rem;
+    padding: 0.6rem 1.25rem;
     box-shadow: 4px 4px 0 var(--nlas-teal-deep);
     text-align: center;
 }
 .schedule-day-rsvp span {
     font-family: var(--font-display);
-    font-size: 1.05rem;
+    font-size: 0.9rem;
+    line-height: 1;
     color: var(--nlas-cream);
+    white-space: nowrap;
 }
 .schedule-day-rsvp-btn { flex-shrink: 0; }
 .schedule-day-rsvp .btn-primary {
@@ -1705,31 +1729,41 @@ section {
     color: var(--nlas-teal-deep);
     border-color: var(--nlas-teal-deep);
     box-shadow: 3px 3px 0 var(--nlas-teal-deep);
+    padding: 0.5rem 1.1rem;
+    font-size: 0.75rem;
 }
 .schedule-day-rsvp .btn-primary:hover { box-shadow: 4px 4px 0 var(--nlas-teal-deep); }
 
-/* Single-event day (e.g. Wednesday's opening reception) */
-.schedule-simple-list { display: flex; flex-direction: column; gap: 1.25rem; max-width: 560px; margin: 0 auto; }
+/* Single-event day (e.g. Wednesday's opening reception) - one self-contained
+   card per session, no click-through modal. */
+.schedule-simple-list { display: flex; flex-direction: column; gap: 1rem; max-width: 720px; margin: 0 auto; }
 
-.schedule-simple-card {
-    display: flex; flex-direction: column; gap: 0.35rem;
+.schedule-full-card {
+    display: flex; flex-direction: column; gap: 0.5rem;
     text-align: left;
     background: var(--nlas-cream);
     border: 2.5px solid var(--nlas-black);
     border-left: 6px solid var(--session-color, var(--nlas-teal));
     border-radius: 4px;
-    padding: 1.25rem 1.5rem;
+    padding: 1.1rem 1.5rem;
     box-shadow: 4px 4px 0 var(--nlas-sky);
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
     font-family: var(--font-body);
 }
 
-.schedule-simple-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--nlas-sky); }
+.schedule-full-card-meta { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--nlas-teal-deep); opacity: 0.75; }
+.schedule-full-card-title { font-family: var(--font-display); font-size: 1.5rem; color: var(--nlas-teal-deep); }
+.schedule-full-card-description { font-size: 0.95rem; line-height: 1.5; color: var(--nlas-black); }
 
-.schedule-simple-time { font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--nlas-teal-deep); opacity: 0.75; }
-.schedule-simple-title { font-family: var(--font-display); font-size: 1.3rem; color: var(--nlas-teal-deep); }
-.schedule-simple-location { font-size: 0.9rem; color: var(--nlas-black); opacity: 0.7; }
+/* Photo-left, name/title-right instead of the modal's stacked/centered layout */
+.schedule-full-card .schedule-modal-speakers { gap: 1rem; }
+.schedule-full-card .schedule-modal-speaker { flex-direction: row; align-items: center; text-align: left; width: auto; gap: 0.65rem; }
+.schedule-full-card .schedule-modal-speaker-photo { width: 52px; height: 52px; margin-bottom: 0; }
+.schedule-full-card .schedule-modal-speaker-info { align-items: flex-start; }
+.schedule-full-card .schedule-modal-speaker-name { font-size: 0.92rem; }
+
+.schedule-full-card-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; margin-top: 0.15rem; }
+.schedule-full-card-actions .btn { padding: 0.6rem 1.5rem; font-size: 0.8rem; }
+.schedule-full-card > .schedule-modal-calendar { margin-bottom: 0; }
 
 /* Room filter chips */
 .room-filters { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.25rem; }
@@ -1740,7 +1774,7 @@ section {
     text-transform: uppercase;
     letter-spacing: 0.04em;
     padding: 0.45rem 1rem;
-    background: transparent;
+    background: var(--nlas-cream);
     border: 2px solid var(--nlas-teal-deep);
     color: var(--nlas-teal-deep);
     cursor: pointer;
@@ -1843,7 +1877,7 @@ body.schedule-modal-open { overflow: hidden; }
     background: var(--nlas-cream);
     border: 2.5px solid var(--nlas-black);
     border-radius: 4px;
-    max-width: 560px;
+    max-width: 750px;
     width: 100%;
     max-height: 85vh;
     overflow-y: auto;
@@ -1894,7 +1928,8 @@ body.schedule-modal-open { overflow: hidden; }
 
 .schedule-modal-speakers { display: flex; flex-wrap: wrap; gap: 1.25rem; }
 .schedule-modal-speaker { display: flex; flex-direction: column; align-items: center; text-align: center; width: 90px; }
-.schedule-modal-speaker-photo { width: 72px; height: 72px; border-radius: 50%; overflow: hidden; border: 2px solid var(--nlas-black); background: var(--nlas-sky); display: flex; align-items: center; justify-content: center; margin-bottom: 0.4rem; }
+.schedule-modal-speaker-info { display: flex; flex-direction: column; align-items: center; }
+.schedule-modal-speaker-photo { width: 72px; height: 72px; border-radius: 50%; overflow: hidden; border: 2px solid var(--nlas-black); background: var(--nlas-sky); display: flex; align-items: center; justify-content: center; margin-bottom: 0.4rem; flex-shrink: 0; }
 .schedule-modal-speaker-photo img { width: 100%; height: 100%; object-fit: cover; }
 .schedule-modal-speaker-initial { font-family: var(--font-display); font-size: 1.5rem; color: var(--nlas-cream); }
 .schedule-modal-speaker-name { font-family: var(--font-display); font-size: 0.82rem; color: var(--nlas-teal-deep); line-height: 1.25; }
@@ -2149,27 +2184,6 @@ body.schedule-modal-open { overflow: hidden; }
 .scholarship-form-success h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--cnl-red); margin-bottom: 0.75rem; }
 .scholarship-form-success p { font-size: 1.1rem; line-height: 1.7; }
 
-
-/* ============================================
-   Sponsor Page
-   ============================================ */
-.sponsors-section { padding: 3.5rem 2rem; }
-.sponsor-tier { margin-bottom: 2.5rem; }
-.tier-title { font-family: var(--font-display); text-align: center; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
-.tier-title.platinum { color: #8E8E8E; }
-.tier-title.gold { color: #C9A227; }
-.tier-title.silver { color: #A8A8A8; }
-.sponsor-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
-.sponsor-logo { background: rgba(44,54,89,0.05); border: 2px dashed rgba(44,54,89,0.2); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--cnl-blue); opacity: 0.5; font-size: 0.85rem; transition: var(--transition-smooth); }
-.sponsor-logo:hover { opacity: 0.8; background: rgba(44,54,89,0.1); }
-.sponsor-logos.large .sponsor-logo { min-width: 200px; min-height: 100px; }
-.sponsor-logos.medium .sponsor-logo { min-width: 150px; min-height: 75px; }
-.sponsor-logos.small .sponsor-logo { min-width: 100px; min-height: 50px; }
-.sponsorship-packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-.package { background: rgba(44,54,89,0.05); border: 1px dashed rgba(44,54,89,0.2); padding: 1.5rem; border-radius: 4px; }
-.package h3 { font-family: var(--font-display); color: var(--cnl-blue); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; }
-.package ul { list-style: none; color: var(--cnl-blue); font-size: 0.9rem; }
-.package ul li { padding: 0.25rem 0; }
 
 /* ============================================
    Password Gate
@@ -2717,6 +2731,12 @@ body.schedule-modal-open { overflow: hidden; }
     .logistics-feature .retro-polaroid,
     .getting-around-feature .retro-polaroid { margin: 0 auto; }
     .airport-cards { grid-template-columns: 1fr; }
+
+    .partners-grid-home { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+    .partners-grid-home { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -2768,7 +2788,6 @@ body.schedule-modal-open { overflow: hidden; }
     .ticket-grid { grid-template-columns: 1fr; padding: 0 1rem; }
     .ticket-card { transform: rotate(0deg) !important; }
     .register-form-block { padding: 1.5rem 1rem; box-shadow: 4px 4px 0 var(--nlas-teal-deep); transform: none !important; }
-    .sponsorship-packages { grid-template-columns: 1fr; }
 
 }
 

@@ -33,7 +33,6 @@ function applyConfig() {
         logistics: 'logistics.html',
         faqs: 'faqs.html',
         scholarships: 'scholarships.html',
-        sponsors: 'sponsors.html',
         register: 'register.html',
         codeOfConduct: 'code-of-conduct.html'
     };
@@ -216,9 +215,9 @@ function initFAQAccordion() {
 // Schedule Page
 // ============================================
 const SCHEDULE_TYPE_COLORS = {
-    Keynote: 'coral',
-    Panel: 'teal',
-    Workshop: 'sky',
+    Keynote: 'teal',
+    Panel: 'sky',
+    'Fireside Chat': 'coral',
     Networking: 'amber',
     Break: 'neutral'
 };
@@ -305,15 +304,27 @@ function scheduleTimeStamp(hhmm, parts) {
     return `${parts.year}${String(parts.month).padStart(2, '0')}${String(parts.day).padStart(2, '0')}T${hhmm.replace(':', '')}00`;
 }
 
+// The calendar entry's location should be the real, geocodable street
+// address (so Google/Apple/Outlook can map-pin it), not the friendly
+// "Theatre – Room" text shown on the page - so prefer the day's venue
+// address and only fall back to the session's own location string.
+function scheduleCalendarLocation(session, day) {
+    return (day && day.venue && day.venue.address) || session.location || '';
+}
+
+function scheduleCalendarTitle(session) {
+    return `NLAS – ${session.title}`;
+}
+
 function scheduleSessionToGCalUrl(session, day) {
     const parts = scheduleSessionDateParts(day);
     if (!parts) return null;
     const params = new URLSearchParams({
         action: 'TEMPLATE',
-        text: session.title,
+        text: scheduleCalendarTitle(session),
         dates: `${scheduleTimeStamp(session.start, parts)}/${scheduleTimeStamp(session.end, parts)}`,
         details: session.description || '',
-        location: session.location || '',
+        location: scheduleCalendarLocation(session, day),
         ctz: 'America/New_York'
     });
     return `https://www.google.com/calendar/render?${params.toString()}`;
@@ -333,8 +344,8 @@ function scheduleSessionToIcsDataUrl(session, day) {
         `DTSTAMP:${nowStamp}`,
         `DTSTART:${scheduleTimeStamp(session.start, parts)}`,
         `DTEND:${scheduleTimeStamp(session.end, parts)}`,
-        `SUMMARY:${escapeIcs(session.title)}`,
-        `LOCATION:${escapeIcs(session.location)}`,
+        `SUMMARY:${escapeIcs(scheduleCalendarTitle(session))}`,
+        `LOCATION:${escapeIcs(scheduleCalendarLocation(session, day))}`,
         `DESCRIPTION:${escapeIcs(session.description)}`,
         'END:VEVENT',
         'END:VCALENDAR'
@@ -411,15 +422,21 @@ function parseSheetTime(raw) {
     return `${String(Math.floor(totalMin / 60)).padStart(2, '0')}:${String(totalMin % 60).padStart(2, '0')}`;
 }
 
-// The sheet only has a "Panel Name" column, so non-panel rows (registration,
-// meals, a reception someone adds straight to the sheet) are guessed from
-// the title's wording rather than requiring a separate Type column.
+// Rows without a recognized "Event Type" cell (blank, typo, or a sheet that
+// predates the column) fall back to guessing from the title's wording.
 function inferScheduleSessionType(title) {
     const t = title.toLowerCase();
     if (/reception|networking|happy hour|mixer/.test(t)) return 'Networking';
     if (/registration|coffee|lunch|breakfast|dinner|\bbreak\b/.test(t)) return 'Break';
+    if (/fireside/.test(t)) return 'Fireside Chat';
     if (/keynote|opening remarks|closing remarks|welcome/.test(t)) return 'Keynote';
     return 'Panel';
+}
+
+function normalizeScheduleEventType(raw) {
+    if (!raw) return null;
+    const match = Object.keys(SCHEDULE_TYPE_COLORS).find(type => type.toLowerCase() === raw.trim().toLowerCase());
+    return match || null;
 }
 
 function parseSheetSessions(csvText) {
@@ -462,9 +479,9 @@ function parseSheetSessions(csvText) {
             start,
             end,
             title,
-            location: room || roomRaw || 'TBD',
+            location: `Woolly Mammoth Theatre${room ? ` – ${room}` : ''}`,
             room,
-            type: inferScheduleSessionType(title),
+            type: normalizeScheduleEventType(col(row, 'Event Type')) || inferScheduleSessionType(title),
             description: col(row, 'Description'),
             moderator: moderator || null,
             speakers
@@ -497,16 +514,27 @@ async function initSchedulePage() {
         const block = document.createElement('div');
         block.className = 'schedule-day-block';
         block.id = `day-${day.id}`;
-        const venueHtml = day.venue
-            ? `<a class="schedule-day-venue" href="${day.venue.mapUrl}" target="_blank" rel="noopener">📍 ${day.venue.name}</a>`
+        const venueRowHtml = day.venue
+            ? `<a class="ticket-stub-location" href="${day.venue.mapUrl}" target="_blank" rel="noopener">📍 ${day.venue.name}</a>`
             : '';
-        const rsvpHtml = day.rsvp
+        // Simple (non-room) days show each session as a full card with its own
+        // RSVP button, so the day-level banner would be a redundant second CTA.
+        const rsvpHtml = (day.rsvp && day.hasRooms)
             ? `<div class="schedule-day-rsvp">
-                <span>Don't forget to RSVP for the ${day.label} kickoff!</span>
+                <span>Don't forget to RSVP!</span>
                 <a class="btn btn-primary schedule-day-rsvp-btn" href="${day.rsvp.url}" target="_blank" rel="noopener">${day.rsvp.label} &rarr;</a>
             </div>`
             : '';
-        block.innerHTML = `<h2 class="schedule-day-heading">${day.label} <span>— ${day.date}</span></h2>${venueHtml}${rsvpHtml}`;
+        const headingHtml = `
+            <div class="ticket-stub">
+                <div class="ticket-stub-main">
+                    <span class="ticket-day">${day.label}</span>
+                    <span class="ticket-sep">&bull;</span>
+                    <span class="ticket-date">${day.date.toUpperCase()}</span>
+                </div>
+                ${venueRowHtml ? `<div class="ticket-stub-divider"></div>${venueRowHtml}` : ''}
+            </div>`;
+        block.innerHTML = `${headingHtml}${rsvpHtml}`;
         panelsEl.appendChild(block);
 
         const content = document.createElement('div');
@@ -526,22 +554,73 @@ async function initSchedulePage() {
     initScheduleModal();
 }
 
+// Shared between the modal (Thursday's grid) and the full session cards
+// (simple days like Wednesday) so speaker/calendar markup isn't duplicated.
+function getScheduleSessionPeople(session) {
+    const people = [];
+    if (session.moderator) people.push({ entry: session.moderator, role: 'Moderator' });
+    (session.speakers || []).forEach(entry => people.push({ entry, role: null }));
+    return people;
+}
+
+function renderScheduleSpeakersHtml(people) {
+    return people.map(({ entry, role }) => {
+        const speaker = findScheduleSpeaker(entry);
+        const photo = speaker.photo
+            ? `<img src="assets/speakers/${speaker.photo}.png" alt="${speaker.name}" loading="lazy" decoding="async">`
+            : `<span class="schedule-modal-speaker-initial">${speaker.name.charAt(0)}</span>`;
+        const subtitle = role
+            ? `<span class="schedule-modal-speaker-role">${role}</span>`
+            : (speaker.title ? `<span class="schedule-modal-speaker-title">${speaker.title}</span>` : '');
+        return `<div class="schedule-modal-speaker">
+            <div class="schedule-modal-speaker-photo">${photo}</div>
+            <div class="schedule-modal-speaker-info">
+                <span class="schedule-modal-speaker-name">${speaker.name}</span>
+                ${subtitle}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function renderScheduleCalendarLinksHtml(session, day) {
+    const gcalUrl = day && scheduleSessionToGCalUrl(session, day);
+    if (!gcalUrl) return '';
+    const icsUrl = scheduleSessionToIcsDataUrl(session, day);
+    const filename = `${session.title.replace(/[^a-z0-9]+/gi, '-')}.ics`;
+    return `<div class="schedule-modal-calendar">
+        <a class="schedule-modal-cal-link" href="${gcalUrl}" target="_blank" rel="noopener">+ Google Calendar</a>
+        <a class="schedule-modal-cal-link" href="${icsUrl}" download="${filename}">+ Apple / Outlook (.ics)</a>
+    </div>`;
+}
+
+// Simple days (e.g. Wednesday's opening reception) show every session as a
+// single self-contained card - no click-through modal, since there's only
+// ever a session or two and everything fits without hiding it behind a tap.
 function renderScheduleSimpleDay(day, container) {
     if (!day.sessions.length) {
         container.innerHTML = '<p class="schedule-empty">Schedule coming soon.</p>';
         return;
     }
 
-    container.innerHTML = `<div class="schedule-simple-list">${day.sessions.map(session => `
-        <button type="button" class="schedule-simple-card" data-session-id="${session.id}" style="--session-color: var(--nlas-${SCHEDULE_TYPE_COLORS[session.type] || 'teal'});">
-            <span class="schedule-simple-time">${formatScheduleTime(session.start)} – ${formatScheduleTime(session.end)}</span>
-            <span class="schedule-simple-title">${session.title}</span>
-            <span class="schedule-simple-location">${session.location}</span>
-        </button>`).join('')}</div>`;
-
-    container.querySelectorAll('[data-session-id]').forEach(card => {
-        card.addEventListener('click', () => openScheduleModal(card.dataset.sessionId));
-    });
+    container.innerHTML = `<div class="schedule-simple-list">${day.sessions.map(session => {
+        const people = getScheduleSessionPeople(session);
+        const speakersHtml = people.length
+            ? `<div class="schedule-modal-speakers">${renderScheduleSpeakersHtml(people)}</div>`
+            : '';
+        const rsvpHtml = session.rsvpUrl
+            ? `<a class="btn btn-primary" href="${session.rsvpUrl}" target="_blank" rel="noopener">${session.rsvpLabel || 'Register'} &rarr;</a>`
+            : '';
+        const calendarHtml = renderScheduleCalendarLinksHtml(session, day);
+        const color = `var(--nlas-${SCHEDULE_TYPE_COLORS[session.type] || 'teal'})`;
+        return `<div class="schedule-full-card" style="--session-color: ${color};">
+            <span class="schedule-full-card-meta">${formatScheduleTime(session.start)} – ${formatScheduleTime(session.end)} &middot; ${session.location}</span>
+            <h3 class="schedule-full-card-title">${session.title}</h3>
+            ${calendarHtml}
+            ${session.description ? `<p class="schedule-full-card-description">${session.description}</p>` : ''}
+            ${speakersHtml}
+            ${rsvpHtml ? `<div class="schedule-full-card-actions">${rsvpHtml}</div>` : ''}
+        </div>`;
+    }).join('')}</div>`;
 }
 
 function renderScheduleRoomDay(day, container, sheetLoadError) {
@@ -697,25 +776,10 @@ function openScheduleModal(sessionId) {
     descEl.textContent = session.description || 'Details coming soon.';
 
     const speakersEl = document.getElementById('schedule-modal-speakers');
-    const people = [];
-    if (session.moderator) people.push({ entry: session.moderator, role: 'Moderator' });
-    (session.speakers || []).forEach(entry => people.push({ entry, role: null }));
+    const people = getScheduleSessionPeople(session);
 
     if (people.length) {
-        speakersEl.innerHTML = people.map(({ entry, role }) => {
-            const speaker = findScheduleSpeaker(entry);
-            const photo = speaker.photo
-                ? `<img src="assets/speakers/${speaker.photo}.png" alt="${speaker.name}" loading="lazy" decoding="async">`
-                : `<span class="schedule-modal-speaker-initial">${speaker.name.charAt(0)}</span>`;
-            const subtitle = role
-                ? `<span class="schedule-modal-speaker-role">${role}</span>`
-                : (speaker.title ? `<span class="schedule-modal-speaker-title">${speaker.title}</span>` : '');
-            return `<div class="schedule-modal-speaker">
-                <div class="schedule-modal-speaker-photo">${photo}</div>
-                <span class="schedule-modal-speaker-name">${speaker.name}</span>
-                ${subtitle}
-            </div>`;
-        }).join('');
+        speakersEl.innerHTML = renderScheduleSpeakersHtml(people);
         speakersEl.hidden = false;
     } else {
         speakersEl.innerHTML = '';
@@ -767,21 +831,16 @@ function renderSpeakers() {
     const grid = document.getElementById('speakers-grid');
     if (!grid || typeof SPEAKERS_CONFIG === 'undefined') return;
 
-    // color scheme: [card-color, card-bg]
-    const schemes = [
-        ['#59abda', '#01b27c'],
-        ['#e5a2c4', '#59abda'],
-        ['#f1ea7d', '#59abda'],
-        ['#01b27c', '#e5a2c4'],
-    ];
+    // card-color / card-bg are picked at random from this palette on every load
+    const palette = ['#59abda', '#01b27c', '#e5a2c4'];
     const rotations = [-1.5, 1, -0.8, 1.5, -0.5, 0.8, -1.2, 1, -0.6, 1.2, -1, 0.5];
 
     const active = SPEAKERS_CONFIG.filter(s => s.enabled);
 
     active.forEach((speaker, i) => {
-        const [schemeColor, schemeBg] = schemes[i % schemes.length];
-        const cardColor = speaker.cardColor || schemeColor;
-        const cardBg = speaker.cardBg || schemeBg;
+        const cardColor = palette[Math.floor(Math.random() * palette.length)];
+        const bgChoices = palette.filter(c => c !== cardColor);
+        const cardBg = bgChoices[Math.floor(Math.random() * bgChoices.length)];
         const rotation = rotations[i % rotations.length];
         const num = String(i + 1).padStart(2, '0');
 

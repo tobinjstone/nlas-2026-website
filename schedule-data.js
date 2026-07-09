@@ -15,8 +15,8 @@
 //   title automatically. For someone not on the Speakers page, use an inline
 //   object instead of a plain string: { name: "Jane Doe", title: "Moderator" }.
 // - `type` drives the color coding / legend. Stick to: "Keynote", "Panel",
-//   "Workshop", "Break", "Networking" (add a new one + a matching entry in the
-//   TYPE_COLORS map in script.js if you need another category).
+//   "Fireside Chat", "Break", "Networking" (add a new one + a matching entry
+//   in the TYPE_COLORS map in script.js if you need another category).
 // - Day 3 (Friday, July 17) is intentionally left out until that lineup is
 //   finalized. Add a new entry to `days` (with a new `id`) when it's ready.
 // - A day can optionally have `venue: { name, mapUrl }` for a small map-pin
@@ -45,13 +45,16 @@
 //
 // Expected columns (header row, any order):
 //   Panel Name | Description | Moderator | Speaker 1 | Speaker 2 | Speaker 3
-//   | Room | Start Time | End Time
+//   | Room | Start Time | End Time | Event Type
 // - Room must match one of SCHEDULE_CONFIG.rooms below (case-insensitive).
 // - Start/End Time can be written like "10:00 AM" or "14:00".
 // - Moderator/Speaker cells should match a name in SPEAKERS_CONFIG
 //   (speakers.js) to automatically pull that person's photo; otherwise the
 //   name is still shown, just without a photo.
 // - Leave Speaker 2/3 blank if a panel doesn't have that many speakers.
+// - Event Type sets the color-coded category (must match the legend):
+//   Break | Networking | Panel | Keynote | Fireside Chat. Leave blank and
+//   the site will guess a category from the panel name instead.
 // ============================================
 
 var SCHEDULE_CONFIG = {
@@ -60,7 +63,7 @@ var SCHEDULE_CONFIG = {
     sheetCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQz7FzG33Xaz7QGmkmEvC1yZLeHxWcgAm54oG3HuKHg_hl0Nuna8vPhOF8WWYceGbk4FQnKnw22xFKn/pub?gid=612136120&single=true&output=csv",
 
     // Room columns for days where sessions run in parallel, in display order.
-    rooms: ["Theater", "Rehearsal Hall", "Workshop"],
+    rooms: ["Theater", "Rehearsal Hall"],
 
     days: [
         {
@@ -73,8 +76,9 @@ var SCHEDULE_CONFIG = {
             // heading (in addition to a matching button inside the session's
             // own modal) - use it for a day that needs its own RSVP flow.
             venue: {
-                name: "Bluejacket, Navy Yard",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=Bluejacket+300+Tingey+St+SE+Washington+DC+20003"
+                name: "Bluejacket",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Bluejacket+300+Tingey+St+SE+Washington+DC+20003",
+                address: "Bluejacket, 300 Tingey St SE #180, Washington, DC 20003, USA"
             },
             rsvp: {
                 label: "RSVP on Partiful",
@@ -86,7 +90,7 @@ var SCHEDULE_CONFIG = {
                     start: "17:00",
                     end: "20:00",
                     title: "Opening Reception",
-                    location: "Bluejacket, Navy Yard",
+                    location: "Bluejacket",
                     room: null,
                     type: "Networking",
                     description: "Kick off NLAS 2026 a night early with drinks and conversation at Bluejacket in Navy Yard. U.S. Representative Jake Auchincloss will offer opening remarks.",
@@ -102,8 +106,9 @@ var SCHEDULE_CONFIG = {
             date: "July 16",
             hasRooms: true,
             venue: {
-                name: "Woolly Mammoth Theatre",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=Woolly+Mammoth+Theatre+641+D+St+NW+Washington+DC+20004"
+                name: "Woolly Mammoth Theatre Company",
+                mapUrl: "https://www.google.com/maps/search/?api=1&query=Woolly+Mammoth+Theatre+641+D+St+NW+Washington+DC+20004",
+                address: "Woolly Mammoth Theatre Company, 641 D Street NW, Washington, DC 20004, USA"
             },
             // The sheet is the sole source for Thursday - registration,
             // opening/closing, meals, and panels are all rows there (Room =

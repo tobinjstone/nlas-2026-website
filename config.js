@@ -26,7 +26,6 @@ var SITE_CONFIG = {
         logistics: true,
         faqs: true,
         scholarships: false,
-        sponsors: false,
         register: true,
     },
     features: {

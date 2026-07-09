@@ -6,7 +6,7 @@ function getHeader(currentPage = '') {
     <nav class="main-nav">
         <div class="nav-container">
             <a href="index.html" class="nav-brand" aria-label="NLAS 2026 Home">
-                <img src="assets/globe logo.png" class="nav-logo-mark" width="34" height="34" alt="" aria-hidden="true">
+                <img src="assets/brand/globe-logo.png" class="nav-logo-mark" width="34" height="34" alt="" aria-hidden="true">
                 <span class="nav-wordmark">NLAS<span class="year">'26</span></span>
             </a>
             <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -21,7 +21,6 @@ function getHeader(currentPage = '') {
                 <li><a href="logistics.html" ${currentPage === 'logistics' ? 'class="active"' : ''}>Logistics</a></li>
                 <li><a href="scholarships.html" ${currentPage === 'scholarships' ? 'class="active"' : ''}>Scholarships</a></li>
                 <li><a href="faqs.html" ${currentPage === 'faqs' ? 'class="active"' : ''}>FAQs</a></li>
-                <li><a href="sponsors.html" ${currentPage === 'sponsors' ? 'class="active"' : ''}>Sponsors</a></li>
                 <li><a href="register.html" class="nav-cta">Register</a></li>
             </ul>
         </div>
@@ -40,7 +39,7 @@ function getFooter() {
             <div class="footer-content">
                 <div class="footer-cnl">
                     <a href="https://cnliberalism.org" aria-label="Center for New Liberalism">
-                        <img src="assets/cnl-logo-white.webp" alt="Center for New Liberalism" class="footer-cnl-logo" loading="lazy" decoding="async">
+                        <img src="assets/brand/cnl-logo-white.webp" alt="Center for New Liberalism" class="footer-cnl-logo" loading="lazy" decoding="async">
                     </a>
                 </div>
                 <div class="footer-brand">
@@ -50,7 +49,6 @@ function getFooter() {
                 <div class="footer-links">
                     <a href="faqs.html">FAQs</a>
                     <a href="scholarships.html">Scholarships</a>
-                    <a href="sponsors.html">Become a Sponsor</a>
                     <a href="mailto:hello@cnliberalism.org">Contact Us</a>
                 </div>
                 <div class="footer-social">

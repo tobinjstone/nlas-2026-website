@@ -12,9 +12,9 @@ The site domain is `https://nlas.cnliberalism.org`.
 ### Favicon block (identical on all pages):
 ```html
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 ```
 
@@ -29,7 +29,7 @@ The site domain is `https://nlas.cnliberalism.org`.
 <meta property="og:url" content="https://nlas.cnliberalism.org/{page-path}">
 <meta property="og:title" content="{Page Title}">
 <meta property="og:description" content="{Page Description}">
-<meta property="og:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
+<meta property="og:image" content="https://nlas.cnliberalism.org/assets/brand/nlascard.png">
 <meta property="og:site_name" content="NLAS 2026">
 ```
 
@@ -39,7 +39,7 @@ The site domain is `https://nlas.cnliberalism.org`.
 <meta name="twitter:site" content="@cnliberalism">
 <meta name="twitter:title" content="{Page Title}">
 <meta name="twitter:description" content="{Page Description}">
-<meta name="twitter:image" content="https://nlas.cnliberalism.org/assets/nlascard.png">
+<meta name="twitter:image" content="https://nlas.cnliberalism.org/assets/brand/nlascard.png">
 ```
 
 ---
@@ -56,7 +56,6 @@ Use these title/description/path values for each page:
 | **schedule.html** | `/schedule.html` | Schedule \| NLAS 2026 | Three days of policy workshops, professional training, and coalition-building at NLAS 2026. |
 | **faqs.html** | `/faqs.html` | FAQs \| NLAS 2026 | Frequently asked questions about the New Liberal Action Summit 2026. |
 | **scholarships.html** | `/scholarships.html` | Scholarships \| NLAS 2026 | Learn about scholarship opportunities to attend NLAS 2026. |
-| **sponsors.html** | `/sponsors.html` | Sponsors \| NLAS 2026 | Become a sponsor of the New Liberal Action Summit 2026. |
 | **code-of-conduct.html** | `/code-of-conduct.html` | Code of Conduct \| NLAS 2026 | Code of conduct for the New Liberal Action Summit 2026. |
 
 ---
@@ -70,8 +69,8 @@ Update the `name` and `short_name` fields and the icon paths to point to `assets
   "name": "New Liberal Action Summit 2026",
   "short_name": "NLAS 2026",
   "icons": [
-    { "src": "/assets/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/assets/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+    { "src": "/assets/favicons/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/favicons/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
   ],
   "theme_color": "#2C3659",
   "background_color": "#FDFBE9",
@@ -101,7 +100,6 @@ Sitemap: https://nlas.cnliberalism.org/sitemap.xml
   <url><loc>https://nlas.cnliberalism.org/schedule.html</loc><priority>0.8</priority></url>
   <url><loc>https://nlas.cnliberalism.org/faqs.html</loc><priority>0.7</priority></url>
   <url><loc>https://nlas.cnliberalism.org/scholarships.html</loc><priority>0.7</priority></url>
-  <url><loc>https://nlas.cnliberalism.org/sponsors.html</loc><priority>0.7</priority></url>
   <url><loc>https://nlas.cnliberalism.org/code-of-conduct.html</loc><priority>0.5</priority></url>
 </urlset>
 ```
