@@ -1059,6 +1059,144 @@ section {
     isolation: isolate;
 }
 
+.keynote-section {
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    background: var(--nlas-sky);
+    border-top: 2.5px dashed var(--nlas-black);
+    border-bottom: 2.5px dashed var(--nlas-black);
+    overflow: hidden;
+}
+
+.keynote-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 900px;
+    margin: 2rem auto 0;
+    text-align: left;
+}
+
+.keynote-photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+    width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.keynote-globe-badge {
+    position: absolute;
+    bottom: -14px;
+    right: -22px;
+    z-index: 2;
+    width: 84px;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--nlas-amber);
+    border: 3px solid var(--nlas-black);
+    box-shadow: 4px 4px 0 var(--nlas-black);
+}
+
+.keynote-globe {
+    width: 60%;
+    height: 60%;
+    color: var(--nlas-teal-deep);
+    animation: keynote-spin 14s linear infinite;
+}
+
+@keyframes keynote-spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .keynote-globe { animation: none; }
+}
+
+.keynote-photo-frame {
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    width: 280px;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--keynote-photo-bg, var(--nlas-coral));
+    border: 3px solid var(--nlas-black);
+    border-radius: 4px 48px 4px 48px;
+    box-shadow: 10px 10px 0 var(--nlas-amber);
+    transform: rotate(-1.5deg);
+}
+
+.keynote-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(15%) contrast(1.05);
+}
+
+.keynote-info h3 {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    color: var(--nlas-cream);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.3rem;
+}
+
+.keynote-title {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--nlas-amber);
+    margin: 0 0 1rem;
+}
+
+.keynote-blurb {
+    font-size: 1rem;
+    color: var(--nlas-cream);
+    opacity: 0.9;
+    max-width: 420px;
+    margin: 0;
+}
+
+@media (max-width: 640px) {
+    .keynote-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .keynote-photo-wrap,
+    .keynote-photo-frame {
+        width: 220px;
+        margin: 0 auto;
+    }
+
+    .keynote-globe-badge {
+        width: 64px;
+        height: 64px;
+        bottom: -10px;
+        right: -14px;
+    }
+
+    .keynote-blurb {
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .keynote-photo-frame {
+        transform: rotate(0deg) !important;
+    }
+}
+
 
 .featured-speakers-grid {
     display: flex;

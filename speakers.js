@@ -18,6 +18,12 @@ var SPEAKERS_CONFIG = [
         enabled: true
     },
     {
+        name: "Michael Bennet",
+        title: "U.S. Senator, Colorado",
+        photo: "Bennet",
+        enabled: true
+    },
+    {
         name: "Don Beyer",
         title: "U.S. Representative, VA-08",
         photo: "Beyer",
