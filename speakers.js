@@ -156,6 +156,12 @@ var SPEAKERS_CONFIG = [
         enabled: true
     },
     {
+        name: "Nat Purser",
+        title: "Director of US Policy, AVERI",
+        photo: "Purser",
+        enabled: true
+    },
+    {
         name: "Ben Ritz",
         title: "VP of Policy, PPI",
         photo: "Ritz",
@@ -174,6 +180,12 @@ var SPEAKERS_CONFIG = [
         enabled: true
     },
     {
+        name: "Greg Schultz",
+        title: "Senior Advisor, CNL",
+        photo: "Schultz",
+        enabled: true
+    },
+    {
         name: "Danielle Steitz",
         title: "Director of National Security Policy, PPI",
         photo: "Steitz",
@@ -183,6 +195,12 @@ var SPEAKERS_CONFIG = [
         name: "Tobin Stone",
         title: "Deputy Director, CNL",
         photo: "Stone",
+        enabled: true
+    },
+    {
+        name: "Hal Stowe",
+        title: "Senior Manager - Regulatory Policy & Intelligence, Eurofins",
+        photo: "Stowe",
         enabled: true
     },
     {
